@@ -8,9 +8,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 public class Entry implements Serializable {
-
     private String name;
     private String login;
     private String password;
-
 }
