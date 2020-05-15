@@ -72,6 +72,8 @@ public class LogIn {
         // Input Fields:
         var grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
+        grid.setHgap(25 * getHScale());
+        grid.setVgap(10 * getVScale());
         root.setCenter(grid);
 
         var nameLabel = new Label("Name:");
