@@ -15,7 +15,7 @@ import lombok.Getter;
 @Getter
 public class App extends Application {
     public static final long VERSION = 14L;
-    public final String style = "light-styles.css";
+    private String style;
     private Stage stage;
     private BorderPane root;
     private GridPane gridPane;
@@ -28,6 +28,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        style = "dark-styles.css"; //TODO Config
         stage = primaryStage;
         stage.setTitle("Password Saver");
         stage.setWidth(1280);
