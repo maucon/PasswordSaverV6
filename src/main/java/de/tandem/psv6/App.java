@@ -9,7 +9,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import lombok.Getter;
 
+@Getter
 public class App extends Application {
     public static final long VERSION = 14L;
     private Stage primaryStage;
@@ -55,34 +57,5 @@ public class App extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-    }
-
-    // Getter:
-    public Stage getPrimaryStage() {
-        return primaryStage;
-    }
-
-    public BorderPane getRoot() {
-        return root;
-    }
-
-    public GridPane getGridPane() {
-        return gridPane;
-    }
-
-    public double getHScale() {
-        return hScale.get();
-    }
-
-    public DoubleProperty hScaleProperty() {
-        return hScale;
-    }
-
-    public double getVScale() {
-        return vScale.get();
-    }
-
-    public DoubleProperty vScaleProperty() {
-        return vScale;
     }
 }
