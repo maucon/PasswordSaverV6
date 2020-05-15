@@ -1,14 +1,15 @@
 package de.tandem.psv6.gui;
 
 import de.tandem.psv6.App;
+import de.tandem.psv6.gui.dialogs.RegisterDialog;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -54,20 +55,22 @@ public class LogIn {
         // Buttons:
         var loginButton = new Button("Login");
         loginButton.resize(200 * getHScale(), 100 * getVScale());
-        var exitButton = new Button("Exit");
-        exitButton.resize(200 * getHScale(), 100 * getVScale());
+        var registerButton = new Button("Register");
+        registerButton.resize(200 * getHScale(), 100 * getVScale());
 
-        var hBox = new HBox(loginButton, exitButton);
+        var hBox = new HBox(registerButton, loginButton);
         hBox.setAlignment(Pos.CENTER);
-        HBox.setMargin(loginButton, new Insets(50 * getVScale(), 100 * getHScale(), 50 * getVScale(), 50 * getHScale()));
-        HBox.setMargin(exitButton, new Insets(50 * getVScale(), 50 * getHScale(), 50 * getVScale(), 100 * getHScale()));
+        hBox.setSpacing(80 * getHScale());
+        hBox.setMinHeight(60 * getVScale());
+//        HBox.setMargin(loginButton, new Insets(50 * getVScale(), 100 * getHScale(), 50 * getVScale(), 50 * getHScale()));
+//        HBox.setMargin(registerButton, new Insets(50 * getVScale(), 50 * getHScale(), 50 * getVScale(), 100 * getHScale()));
         root.setBottom(hBox);
 
         loginButton.setOnAction(event -> {
             stage.close();
             app.getStage().show();
         });
-        exitButton.setOnAction(event -> stage.close());
+        registerButton.setOnAction(event -> new RegisterDialog(app, stage, 200 * getHScale(), 250 * getVScale()));
 
         // Input Fields:
         var grid = new GridPane();
@@ -81,7 +84,7 @@ public class LogIn {
         grid.addRow(0, nameLabel, nameInput);
 
         var passwordLabel = new Label("Password:");
-        var passwordInput = new TextField();
+        var passwordInput = new PasswordField();
         grid.addRow(1, passwordLabel, passwordInput);
     }
 

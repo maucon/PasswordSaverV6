@@ -18,15 +18,15 @@ public class RestartDialog extends Dialog {
 
     @Override
     void initNodes() {
-        Label label1 = new Label("You need to Restart for the Settings to apply.");
-        Label label2 = new Label("Do you want to restart now?");
+        var label1 = new Label("You need to Restart for the Settings to apply.");
+        var label2 = new Label("Do you want to restart now?");
         GridPane.setHalignment(label1, HPos.CENTER);
         GridPane.setHalignment(label2, HPos.CENTER);
         grid.addRow(0, label1);
         grid.addRow(1, label2);
-        Button okButton = new Button("OK");
-        Button cancelButton = new Button("Cancel");
-        HBox box = new HBox(okButton, cancelButton);
+        var okButton = new Button("OK");
+        var cancelButton = new Button("Cancel");
+        var box = new HBox(okButton, cancelButton);
         box.setAlignment(Pos.CENTER);
         box.setSpacing(50 * app.getHScale());
         grid.addRow(2, box);
