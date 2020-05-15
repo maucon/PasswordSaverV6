@@ -1,5 +1,6 @@
 package de.tandem.psv6;
 
+import de.tandem.psv6.gui.MenuBar;
 import javafx.application.Application;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -37,6 +38,8 @@ public class App extends Application {
         gridPane.setId("gridPane");
         gridPane.setAlignment(Pos.CENTER);
         root.setCenter(gridPane);
+
+        new MenuBar(this);
 
         Scene scene = new Scene(root);
 
