@@ -57,8 +57,8 @@ public class App extends Application {
         cs.minWidthProperty().bind(hScale.multiply(80));
         gridPane.getColumnConstraints().addAll(cs, cs, cs, cs);
 
-        this.stage.setScene(scene);
-        this.stage.show();
+        stage.setScene(scene);
+        stage.show();
     }
 
     @Override
