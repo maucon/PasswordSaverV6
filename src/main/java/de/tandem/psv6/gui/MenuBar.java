@@ -20,9 +20,7 @@ public class MenuBar {
         items[2] = new MenuItem[]{new MenuItem("New _Item"), new MenuItem("New _Category"), new MenuItem("_Remove Item"), new MenuItem("_Remove Category")};
         items[3] = new MenuItem[]{new CheckMenuItem("_Collapse Categories"), new CheckMenuItem("_Dark Mode")};
         addListeners();
-        for (int i = 0; i < menus.length; i++) {
-            menus[i].getItems().addAll(items[i]);
-        }
+        for (int i = 0; i < menus.length; i++) menus[i].getItems().addAll(items[i]);
         menuBar = new javafx.scene.control.MenuBar(menus);
         app.getRoot().setTop(menuBar);
     }
