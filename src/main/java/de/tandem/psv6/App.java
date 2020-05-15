@@ -15,6 +15,7 @@ import lombok.Getter;
 
 @Getter
 public class App extends Application {
+    public static final boolean DEBUG = true;
     public static final long VERSION = 14L;
     private String style;
     private Stage stage;
@@ -59,7 +60,8 @@ public class App extends Application {
         gridPane.getColumnConstraints().addAll(cs, cs, cs, cs);
 
         stage.setScene(scene);
-        new LogIn(this);
+        if (DEBUG) stage.show();
+        else new LogIn(this);
     }
 
     @Override
