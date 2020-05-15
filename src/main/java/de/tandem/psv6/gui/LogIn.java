@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -81,7 +82,7 @@ public class LogIn {
         grid.addRow(0, nameLabel, nameInput);
 
         var passwordLabel = new Label("Password:");
-        var passwordInput = new TextField();
+        var passwordInput = new PasswordField();
         grid.addRow(1, passwordLabel, passwordInput);
     }
 
