@@ -11,8 +11,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
@@ -70,25 +70,17 @@ public class LogIn {
         exitButton.setOnAction(event -> stage.close());
 
         // Input Fields:
+        var grid = new GridPane();
+        grid.setAlignment(Pos.CENTER);
+        root.setCenter(grid);
+
         var nameLabel = new Label("Name:");
         var nameInput = new TextField();
-        var nameHBox = new HBox(nameLabel, nameInput);
-        nameHBox.setAlignment(Pos.CENTER);
-        HBox.setMargin(nameLabel, new Insets(50 * getVScale(), 100 * getHScale(), 50 * getVScale(), 50 * getHScale()));
-        HBox.setMargin(nameInput, new Insets(50 * getVScale(), 50 * getHScale(), 50 * getVScale(), 100 * getHScale()));
+        grid.addRow(0, nameLabel, nameInput);
 
         var passwordLabel = new Label("Password:");
         var passwordInput = new TextField();
-        var passwordHBox = new HBox(passwordLabel, passwordInput);
-        passwordHBox.setAlignment(Pos.CENTER);
-        HBox.setMargin(passwordLabel, new Insets(50 * getVScale(), 100 * getHScale(), 50 * getVScale(), 50 * getHScale()));
-        HBox.setMargin(passwordInput, new Insets(50 * getVScale(), 50 * getHScale(), 50 * getVScale(), 100 * getHScale()));
-
-        var formVBox = new VBox(nameHBox, passwordHBox);
-        formVBox.setAlignment(Pos.CENTER);
-//        VBox.setMargin(nameHBox, new Insets(50 * getVScale(), 50 * getHScale(), 50 * getVScale(), 100 * getHScale()));
-//        VBox.setMargin(passwordHBox, new Insets(50 * getVScale(), 50 * getHScale(), 50 * getVScale(), 100 * getHScale()));
-        root.setCenter(formVBox);
+        grid.addRow(1, passwordLabel, passwordInput);
     }
 
     private double getHScale() {
