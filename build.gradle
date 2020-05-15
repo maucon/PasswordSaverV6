@@ -24,8 +24,13 @@ tasks.withType(Test) {
 }
 
 dependencies {
-    testCompile 'junit:junit:4.12'
     implementation 'commons-codec:commons-codec:1.14'
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+    testCompile 'junit:junit:4.12'
+    testCompileOnly 'org.projectlombok:lombok:1.18.12'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.12'
 }
 
 javafx {
