@@ -1,2 +1,2 @@
 # PasswordSaverV6
-Save passwords
+Java password manager
