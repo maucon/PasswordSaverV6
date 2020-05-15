@@ -33,7 +33,6 @@ public class LogIn {
         stage.setScene(new Scene(grid));
 
         initNodes();
-        stage.setOnCloseRequest(closeEventHandler);
         stage.show();
     }
 
