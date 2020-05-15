@@ -54,8 +54,35 @@ public class App extends Application {
 
     @Override
     public void stop() throws Exception {
-        // Save Settings
         super.stop();
     }
 
+    // Getter:
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    public BorderPane getRoot() {
+        return root;
+    }
+
+    public GridPane getGridPane() {
+        return gridPane;
+    }
+
+    public double getHScale() {
+        return hScale.get();
+    }
+
+    public DoubleProperty hScaleProperty() {
+        return hScale;
+    }
+
+    public double getVScale() {
+        return vScale.get();
+    }
+
+    public DoubleProperty vScaleProperty() {
+        return vScale;
+    }
 }
