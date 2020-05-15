@@ -15,7 +15,8 @@ import lombok.Getter;
 @Getter
 public class App extends Application {
     public static final long VERSION = 14L;
-    private Stage primaryStage;
+    public final String style = "styles.css";
+    private Stage stage;
     private BorderPane root;
     private GridPane gridPane;
     private DoubleProperty hScale;
@@ -26,20 +27,22 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Password Saver");
-        this.primaryStage.setWidth(1280);
-        this.primaryStage.setHeight(720);
+    public void start(Stage primaryStage) {
+        stage = primaryStage;
+        stage.setTitle("Password Saver");
+        stage.setWidth(1280);
+        stage.setHeight(720);
 
         root = new BorderPane();
+        root.getStylesheets().add(style);
+
+        new MenuBar(this);
 
         gridPane = new GridPane();
         gridPane.setId("gridPane");
+        gridPane.getStylesheets().add(style);
         gridPane.setAlignment(Pos.CENTER);
         root.setCenter(gridPane);
-
-        new MenuBar(this);
 
         Scene scene = new Scene(root);
 
@@ -53,12 +56,20 @@ public class App extends Application {
         cs.minWidthProperty().bind(hScale.multiply(80));
         gridPane.getColumnConstraints().addAll(cs, cs, cs, cs);
 
-        this.primaryStage.setScene(scene);
-        this.primaryStage.show();
+        this.stage.setScene(scene);
+        this.stage.show();
     }
 
     @Override
     public void stop() throws Exception {
         super.stop();
+    }
+
+    public double getHScale() {
+        return hScale.doubleValue();
+    }
+
+    public double getVScale() {
+        return vScale.doubleValue();
     }
 }
