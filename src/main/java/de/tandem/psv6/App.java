@@ -1,7 +1,9 @@
 package de.tandem.psv6;
 
+import de.tandem.psv6.gui.LogIn;
 import de.tandem.psv6.gui.MenuBar;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Pos;
@@ -28,6 +30,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        Platform.setImplicitExit(false);
         style = "dark-styles.css"; //TODO Config
         stage = primaryStage;
         stage.setTitle("Password Saver");
@@ -58,7 +61,8 @@ public class App extends Application {
         gridPane.getColumnConstraints().addAll(cs, cs, cs, cs);
 
         stage.setScene(scene);
-        stage.show();
+        new LogIn(this);
+//        stage.show();
     }
 
     @Override
