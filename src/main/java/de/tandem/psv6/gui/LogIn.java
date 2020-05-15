@@ -33,7 +33,6 @@ public class LogIn {
         stage.setScene(new Scene(grid));
 
         initNodes();
-        setCloseEvent();
         stage.setOnCloseRequest(closeEventHandler);
         stage.show();
     }
@@ -45,11 +44,5 @@ public class LogIn {
             stage.close();
             app.getStage().show();
         });
-    }
-
-    private void setCloseEvent() {
-        closeEventHandler = windowEvent -> {
-            app.getStage().close();
-        };
     }
 }
