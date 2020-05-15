@@ -47,14 +47,14 @@ public class App extends Application {
         gridPane.setAlignment(Pos.CENTER);
         root.setCenter(gridPane);
 
-        Scene scene = new Scene(root);
+        var scene = new Scene(root);
 
         hScale = new SimpleDoubleProperty();
         hScale.bind(scene.widthProperty().divide(720));
         vScale = new SimpleDoubleProperty();
         vScale.bind(scene.heightProperty().divide(1280));
 
-        ColumnConstraints cs = new ColumnConstraints();
+        var cs = new ColumnConstraints();
         cs.maxWidthProperty().bind(hScale.multiply(150));
         cs.minWidthProperty().bind(hScale.multiply(80));
         gridPane.getColumnConstraints().addAll(cs, cs, cs, cs);
