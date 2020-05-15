@@ -10,6 +10,6 @@ import java.io.Serializable;
 public class User implements Serializable {
 
     private String username;
-    private String hashed_password;
+    private String hashedPassword;
 
 }
