@@ -15,7 +15,7 @@ import lombok.Getter;
 @Getter
 public class App extends Application {
     public static final long VERSION = 14L;
-    public final String style = "styles.css";
+    public final String style = "light-styles.css";
     private Stage stage;
     private BorderPane root;
     private GridPane gridPane;
