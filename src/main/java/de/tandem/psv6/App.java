@@ -15,7 +15,7 @@ import lombok.Getter;
 
 @Getter
 public class App extends Application {
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
     public static final long VERSION = 14L;
     private String style;
     private Stage stage;
