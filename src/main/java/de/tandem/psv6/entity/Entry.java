@@ -9,6 +9,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class Entry implements Serializable {
 
+    // BANNED CHARS: ´§²³€µäÄüÜöÖ
     private String name;
     private String login;
     private String password;
