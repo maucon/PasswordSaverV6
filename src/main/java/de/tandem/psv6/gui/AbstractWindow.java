@@ -12,11 +12,11 @@ public abstract class AbstractWindow {
     protected Stage stage;
     protected GUIOwner owner;
 
-    protected TextInputControl addField(String labelText, int gridIndex) {
-        return addField(labelText, gridIndex, false);
+    protected TextInputControl addField(int gridIndex, String labelText) {
+        return addField(gridIndex, labelText, false);
     }
 
-    protected TextInputControl addField(String labelText, int gridIndex, boolean isPassword) {
+    protected TextInputControl addField(int gridIndex, String labelText, boolean isPassword) {
         var label = new Label(labelText);
         var input = isPassword ? new PasswordField() : new TextField();
         grid.addRow(gridIndex, label, input);

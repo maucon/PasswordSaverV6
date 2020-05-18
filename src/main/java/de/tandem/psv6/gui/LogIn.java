@@ -7,9 +7,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -18,9 +15,8 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 
-public class LogIn implements GUIOwner {
+public class LogIn extends AbstractWindow implements GUIOwner {
     private final App app;
-    private final Stage stage;
     private final BorderPane root;
     private EventHandler<WindowEvent> closeEventHandler;
 
@@ -61,19 +57,14 @@ public class LogIn implements GUIOwner {
         root.setBottom(hBox);
 
         // Input Fields:
-        var grid = new GridPane();
+        grid = new GridPane();
         grid.setAlignment(Pos.CENTER);
         grid.setHgap(25 * getHScale());
         grid.setVgap(10 * getVScale());
         root.setCenter(grid);
 
-        var nameLabel = new Label("Name:");
-        var nameInput = new TextField();
-        grid.addRow(0, nameLabel, nameInput);
-
-        var passwordLabel = new Label("Password:");
-        var passwordInput = new PasswordField();
-        grid.addRow(1, passwordLabel, passwordInput);
+        var nameInput = addField(0, "Name:");
+        var passwordInput = addField(1, "Password:", true);
 
         // Event Listeners:
         loginButton.setOnAction(event -> {
