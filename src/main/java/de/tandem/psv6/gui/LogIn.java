@@ -1,6 +1,7 @@
 package de.tandem.psv6.gui;
 
 import de.tandem.psv6.App;
+import de.tandem.psv6.database.Database;
 import de.tandem.psv6.gui.dialogs.ErrorDialog;
 import de.tandem.psv6.gui.dialogs.RegisterDialog;
 import javafx.event.EventHandler;
@@ -63,15 +64,16 @@ public class LogIn extends AbstractWindow implements GUIOwner {
         grid.setVgap(10 * getVScale());
         root.setCenter(grid);
 
-        var nameInput = addField(0, "Name:");
+        var nameInput = addCombo(0, "Name:", Database.getUserList());
         var passwordInput = addField(1, "Password:", true);
+        nameInput.setPrefWidth(150 * getHScale());
 
         // Event Listeners:
         loginButton.setOnAction(event -> {
-            var name = nameInput.getText();
-            var password = nameInput.getText();
+            var name = nameInput.getSelectionModel().getSelectedItem();
+            var password = passwordInput.getText();
 
-            if (name.isBlank()) new ErrorDialog(this, "Name is blank.");
+            if (name == null) new ErrorDialog(this, "Name not selected.");
             else if (password.isBlank()) new ErrorDialog(this, "Password is blank.");
 //            else if () new ErrorDialog(this, "Username or Passowrd is incorrect."); // TODO proper check
             else {
