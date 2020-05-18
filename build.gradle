@@ -24,6 +24,9 @@ tasks.withType(Test) {
 }
 
 dependencies {
+    compile 'org.connid:framework:1.3.2'
+    compile 'net.tirasa.connid:connector-framework-internal:1.4.2.0'
+
     implementation 'commons-codec:commons-codec:1.14'
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
