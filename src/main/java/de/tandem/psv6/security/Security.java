@@ -2,6 +2,7 @@ package de.tandem.psv6.security;
 
 import de.tandem.psv6.database.Database;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.identityconnectors.common.security.GuardedString;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
@@ -16,6 +17,8 @@ import java.util.Arrays;
 public class Security {
 
     private static final char[] HEX_ARRAY = "0123456789abcdef".toCharArray();
+
+    public static GuardedString guardedString;
 
     public static String save_hash(String username, String string) {
         return DigestUtils.sha3_512Hex(username + string);
@@ -41,6 +44,12 @@ public class Security {
 
     public static boolean passwordMatches(String username, String password) {
         return save_hash(username, password).equals(Database.getUserHashedPassword(username));
+    }
+
+    public static String accessGuardedKey(GuardedString guardedString) {
+        final StringBuilder clearKey = new StringBuilder();
+        guardedString.access(clearKey::append);
+        return clearKey.toString();
     }
 
 }

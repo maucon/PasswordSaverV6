@@ -5,13 +5,12 @@ import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.entity.User;
 import de.tandem.psv6.exceptions.UserAlreadyExistsException;
 import de.tandem.psv6.security.Security;
+import org.identityconnectors.common.security.GuardedString;
 
 import java.io.*;
 import java.security.GeneralSecurityException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Database {
@@ -66,8 +65,9 @@ public class Database {
     }
 
     // ------------------------- LOGGED IN USER -------------------------
-    public ArrayList<Entry> getAllEntries(String key) {
+    public ArrayList<Entry> getAllEntries(GuardedString guardedKey) {
         var entryList = new ArrayList<Entry>();
+        var key = Security.accessGuardedKey(guardedKey);
 
         for (File file : Objects.requireNonNull(new File(userPath + ENTRY_FOLDER_NAME).listFiles())) {
             if (file.getName().endsWith(ENTRY_FILE_EXTENSION))
@@ -81,14 +81,14 @@ public class Database {
         return entryList;
     }
 
-    public void addEntry(Entry entry, String key) {
-        try {
-            new File(userPath + ENTRY_FOLDER_NAME + entry.getName() + ENTRY_FILE_EXTENSION).createNewFile();
+    public void addEntry(Entry entry, GuardedString guardedKey) {
+        var key = Security.accessGuardedKey(guardedKey);
+        var date = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 
-            try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(userPath + ENTRY_FOLDER_NAME + entry.getName() + ENTRY_FILE_EXTENSION), key))) {
-                out.writeObject(entry);
-            }
+        try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(userPath + ENTRY_FOLDER_NAME + date + ENTRY_FILE_EXTENSION), key))) {
+            out.writeObject(entry);
         } catch (IOException | GeneralSecurityException ignored) {
+            ignored.printStackTrace();
         }
     }
 
