@@ -19,13 +19,11 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 
-public class LogIn {
+public class LogIn  implements GUIOwner{
     private final App app;
     private final Stage stage;
     private final BorderPane root;
     private EventHandler<WindowEvent> closeEventHandler;
-    private final DoubleProperty hScale;
-    private final DoubleProperty vScale;
 
     public LogIn(App app) {
         this.app = app;
@@ -42,10 +40,9 @@ public class LogIn {
         var scene = new Scene(root);
         stage.setScene(scene);
 
-        hScale = new SimpleDoubleProperty();
-        hScale.bind(stage.widthProperty().divide(400));
-        vScale = new SimpleDoubleProperty();
         vScale.bind(stage.heightProperty().divide(700));
+        hScale.bind(stage.widthProperty().divide(400));
+        System.out.println(getHScale());
 
         initNodes();
         stage.show();
@@ -62,15 +59,7 @@ public class LogIn {
         hBox.setAlignment(Pos.CENTER);
         hBox.setSpacing(80 * getHScale());
         hBox.setMinHeight(60 * getVScale());
-//        HBox.setMargin(loginButton, new Insets(50 * getVScale(), 100 * getHScale(), 50 * getVScale(), 50 * getHScale()));
-//        HBox.setMargin(registerButton, new Insets(50 * getVScale(), 50 * getHScale(), 50 * getVScale(), 100 * getHScale()));
         root.setBottom(hBox);
-
-        loginButton.setOnAction(event -> {
-            stage.close();
-            app.getStage().show();
-        });
-        registerButton.setOnAction(event -> new RegisterDialog(app, stage, 200 * getHScale(), 250 * getVScale()));
 
         // Input Fields:
         var grid = new GridPane();
@@ -86,13 +75,28 @@ public class LogIn {
         var passwordLabel = new Label("Password:");
         var passwordInput = new PasswordField();
         grid.addRow(1, passwordLabel, passwordInput);
+
+        // Event Listeners:
+        loginButton.setOnAction(event -> {
+            // TODO proper Check
+            var name = nameInput.getText();
+            var password = nameInput.getText();
+            if (name.isBlank() || password.isBlank()) {
+                System.out.println("Wrong");
+            } else {
+                stage.close();
+                app.getStage().show();
+            }
+        });
+        registerButton.setOnAction(event -> new RegisterDialog(this));
     }
 
-    private double getHScale() {
-        return hScale.doubleValue();
+    @Override
+    public Stage getStage() {
+        return stage;
     }
-
-    private double getVScale() {
-        return vScale.doubleValue();
+    @Override
+    public String getStyle() {
+        return app.getStyle();
     }
 }

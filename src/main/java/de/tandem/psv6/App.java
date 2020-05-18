@@ -1,5 +1,6 @@
 package de.tandem.psv6;
 
+import de.tandem.psv6.gui.GUIOwner;
 import de.tandem.psv6.gui.LogIn;
 import de.tandem.psv6.gui.MenuBar;
 import javafx.application.Application;
@@ -14,15 +15,13 @@ import javafx.stage.Stage;
 import lombok.Getter;
 
 @Getter
-public class App extends Application {
+public class App extends Application implements GUIOwner {
     public static final boolean DEBUG = false;
     public static final long VERSION = 14L;
-    private String style;
     private Stage stage;
+    private String style;
     private BorderPane root;
     private GridPane gridPane;
-    private DoubleProperty hScale;
-    private DoubleProperty vScale;
 
     public static void main(String[] args) {
         launch(args);
@@ -48,11 +47,11 @@ public class App extends Application {
         root.setCenter(gridPane);
 
         var scene = new Scene(root);
+        root.setPrefWidth(1280);
+        root.setPrefHeight(720);
 
-        hScale = new SimpleDoubleProperty();
-        hScale.bind(scene.widthProperty().divide(720));
-        vScale = new SimpleDoubleProperty();
         vScale.bind(scene.heightProperty().divide(1280));
+        hScale.bind(scene.widthProperty().divide(720));
 
         var cs = new ColumnConstraints();
         cs.maxWidthProperty().bind(hScale.multiply(150));
@@ -67,13 +66,5 @@ public class App extends Application {
     @Override
     public void stop() throws Exception {
         super.stop();
-    }
-
-    public double getHScale() {
-        return hScale.doubleValue();
-    }
-
-    public double getVScale() {
-        return vScale.doubleValue();
     }
 }

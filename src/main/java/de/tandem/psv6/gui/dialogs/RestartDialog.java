@@ -1,6 +1,7 @@
 package de.tandem.psv6.gui.dialogs;
 
 import de.tandem.psv6.App;
+import de.tandem.psv6.gui.GUIOwner;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -12,8 +13,8 @@ import javafx.stage.Stage;
 
 public class RestartDialog extends Dialog {
 
-    public RestartDialog(App app) {
-        super("Warning", 200 * app.getHScale(), 250 * app.getVScale(), app);
+    public RestartDialog(GUIOwner owner) {
+        super(owner, "Warning", 200 * owner.getHScale(), 250 * owner.getVScale());
     }
 
     @Override
@@ -28,12 +29,12 @@ public class RestartDialog extends Dialog {
         var cancelButton = new Button("Cancel");
         var box = new HBox(okButton, cancelButton);
         box.setAlignment(Pos.CENTER);
-        box.setSpacing(50 * app.getHScale());
+        box.setSpacing(50 * owner.getHScale());
         grid.addRow(2, box);
 
         okButton.setOnAction(event -> {
             stage.close();
-            app.getStage().close();
+            owner.getStage().close();
             Platform.runLater(() -> {
                 try {
                     new App().start(new Stage());
