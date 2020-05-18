@@ -88,7 +88,6 @@ public class Database {
         try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(userPath + ENTRY_FOLDER_NAME + date + ENTRY_FILE_EXTENSION), key))) {
             out.writeObject(entry);
         } catch (IOException | GeneralSecurityException ignored) {
-            ignored.printStackTrace();
         }
     }
 
