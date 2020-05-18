@@ -44,7 +44,9 @@ public class Database {
         } catch (IOException ignored) {
         }
 
-        return new Database(userPath);
+        Database database = new Database(user.getUsername());
+        database.saveUserSettings();
+        return database;
     }
 
     public static List<String> getUserList() {
@@ -63,7 +65,7 @@ public class Database {
     public ArrayList<Entry> getAllEntries() {
         var entryList = new ArrayList<Entry>();
 
-        for (File file : Objects.requireNonNull(new File(userPath + entryList).listFiles())) {
+        for (File file : Objects.requireNonNull(new File(userPath + ENTRY_FOLDER_NAME).listFiles())) {
             if (file.getName().endsWith(ENTRY_FILE_EXTENSION))
 
                 try (var bufferedReader = new BufferedReader(new FileReader(file))) {
