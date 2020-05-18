@@ -14,9 +14,9 @@ public class RegisterDialog extends Dialog {
         grid.setVgap(10 * owner.getVScale());
 
         // Input Fields:
-        var nameInput = addField("Name:", 0);
-        var passwordInput = addField("Password:", 1, true);
-        var password2Input = addField("Retype Password:", 2, true);
+        var nameInput = addField(0, "Name:");
+        var passwordInput = addField(1, "Password:", true);
+        var password2Input = addField(2, "Retype Password:", true);
 
         addOkCancelButtons(3).setOnAction(event -> {
             var name = nameInput.getText();
