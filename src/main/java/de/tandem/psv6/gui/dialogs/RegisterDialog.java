@@ -3,16 +3,13 @@ package de.tandem.psv6.gui.dialogs;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
 public class RegisterDialog extends Dialog {
+
     public RegisterDialog(GUIOwner owner) {
         super(owner, "Register", 500, 400);
     }
-
 
     @Override
     protected void initNodes() {
@@ -27,17 +24,9 @@ public class RegisterDialog extends Dialog {
         grid.addRow(3, box);
 
         // Input Fields:
-        var nameLabel = new Label("Name:");
-        var nameInput = new TextField();
-        grid.addRow(0, nameLabel, nameInput);
-
-        var passwordLabel = new Label("Password:");
-        var passwordInput = new PasswordField();
-        grid.addRow(1, passwordLabel, passwordInput);
-
-        var password2Label = new Label("Retype Password:");
-        var password2Input = new PasswordField();
-        grid.addRow(2, password2Label, password2Input);
+        var nameInput = addField("Name:", 0);
+        var passwordInput = addField("Password:", 1, true);
+        var password2Input = addField("Retype Password:", 2, true);
 
         okButton.setOnAction(event -> {
             var name = nameInput.getText();
