@@ -39,7 +39,6 @@ public class Database {
 
             new File(userPath + ENTRY_FOLDER_NAME).mkdir();
             new File(userPath + BACKUP_FOLDER_NAME).mkdir();
-            new File(userPath + CONFIG_FILE_NAME).createNewFile();
 
             bufferedWriter.write(user.getHashedPassword());
 
@@ -65,9 +64,9 @@ public class Database {
     }
 
     // ------------------------- LOGGED IN USER -------------------------
-    public ArrayList<Entry> getAllEntries(GuardedString guardedKey) {
+    public ArrayList<Entry> getAllEntries() {
         var entryList = new ArrayList<Entry>();
-        var key = Security.accessGuardedKey(guardedKey);
+        var key = Security.accessGuardedKey(Security.guardedString);
 
         for (File file : Objects.requireNonNull(new File(userPath + ENTRY_FOLDER_NAME).listFiles())) {
             if (file.getName().endsWith(ENTRY_FILE_EXTENSION))
@@ -81,8 +80,8 @@ public class Database {
         return entryList;
     }
 
-    public void addEntry(Entry entry, GuardedString guardedKey) {
-        var key = Security.accessGuardedKey(guardedKey);
+    public void addEntry(Entry entry) {
+        var key = Security.accessGuardedKey(Security.guardedString);
         var date = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 
         try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(userPath + ENTRY_FOLDER_NAME + date + ENTRY_FILE_EXTENSION), key))) {
