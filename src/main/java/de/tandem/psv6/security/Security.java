@@ -16,8 +16,8 @@ public class Security {
 
     private static final char[] HEX_ARRAY = "0123456789abcdef".toCharArray();
 
-    public static String save_hash(String string) {
-        return DigestUtils.sha3_512Hex(string);
+    public static String save_hash(String username, String string) {
+        return DigestUtils.sha3_512Hex(username + string);
     }
 
     public static String key_hash(String string) {
