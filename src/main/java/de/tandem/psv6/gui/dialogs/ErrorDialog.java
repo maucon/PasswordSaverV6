@@ -1,12 +1,14 @@
 package de.tandem.psv6.gui.dialogs;
 
 import de.tandem.psv6.App;
+import de.tandem.psv6.gui.GUIOwner;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class ErrorDialog extends Dialog {
 
-    public ErrorDialog(String errorMessage, App app) {
-        super("Error", errorMessage.length() * 6 * app.getHScale(), 250 * app.getVScale(), app);
+    public ErrorDialog(GUIOwner owner, String errorMessage) {
+        super(owner, "Error", errorMessage.length() * 13 * owner.getHScale(), 200 * owner.getVScale());
         grid.addRow(0, new Label(errorMessage));
     }
 
