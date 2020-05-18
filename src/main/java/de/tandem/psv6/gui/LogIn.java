@@ -83,7 +83,7 @@ public class LogIn extends AbstractWindow implements GUIOwner {
                 app.getStage().show();
             }
         });
-        registerButton.setOnAction(event -> new RegisterDialog(this));
+        registerButton.setOnAction(event -> new RegisterDialog(this, nameInput));
     }
 
     @Override
