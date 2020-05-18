@@ -1,11 +1,13 @@
 package de.tandem.psv6.database;
 
 import de.tandem.psv6.entity.Entry;
-import de.tandem.psv6.entity.Setting;
+import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.entity.User;
 import de.tandem.psv6.exceptions.UserAlreadyExistsException;
+import de.tandem.psv6.security.Security;
 
 import java.io.*;
+import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +29,8 @@ public class Database {
         this.userPath = DATABASE_PATH + username + "/";
     }
 
-    public static Database setupUserFolder(User user) {
+    // ------------------------- STATIC -------------------------
+    public static Database setupUser(User user) {
         String userPath = DATABASE_PATH + user.getUsername() + "/";
 
         if (!new File(userPath).mkdir())
@@ -62,32 +65,46 @@ public class Database {
         return "";
     }
 
-    public ArrayList<Entry> getAllEntries() {
+    // ------------------------- LOGGED IN USER -------------------------
+    public ArrayList<Entry> getAllEntries(String key) {
         var entryList = new ArrayList<Entry>();
 
         for (File file : Objects.requireNonNull(new File(userPath + ENTRY_FOLDER_NAME).listFiles())) {
             if (file.getName().endsWith(ENTRY_FILE_EXTENSION))
 
-                try (var bufferedReader = new BufferedReader(new FileReader(file))) {
-                    entryList.add(new Entry(bufferedReader.readLine(), bufferedReader.readLine(), bufferedReader.readLine(), bufferedReader.readLine()));
-                } catch (IOException ignored) {
+                try (ObjectInputStream out = new ObjectInputStream(Security.decryptStream(new FileInputStream(file.getPath()), key));) {
+                    entryList.add((Entry) out.readObject());
+                } catch (IOException | ClassNotFoundException | GeneralSecurityException ignored) {
                 }
         }
 
         return entryList;
     }
 
+    public void addEntry(Entry entry, String key) {
+        try {
+            new File(userPath + ENTRY_FOLDER_NAME + entry.getName() + ENTRY_FILE_EXTENSION).createNewFile();
+
+            try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(userPath + ENTRY_FOLDER_NAME + entry.getName() + ENTRY_FILE_EXTENSION), key))) {
+                out.writeObject(entry);
+            }
+        } catch (IOException | GeneralSecurityException ignored) {
+        }
+    }
+
+    // ------------------------- SETTINGS -------------------------
     public void loadUserSettings() {
         try (var bufferedReader = new BufferedReader(new FileReader(userPath + CONFIG_FILE_NAME))) {
-            Setting.darkMode = bufferedReader.readLine().equals("true");
+            Settings.darkMode = bufferedReader.readLine().equals("true");
         } catch (IOException ignored) {
         }
     }
 
     public void saveUserSettings() {
         try (var bufferedWriter = new BufferedWriter(new FileWriter(new File(userPath + CONFIG_FILE_NAME)))) {
-            bufferedWriter.write(Setting.darkMode ? "true" : "false");
+            bufferedWriter.write(Settings.darkMode ? "true" : "false");
         } catch (IOException ignored) {
         }
     }
+
 }
