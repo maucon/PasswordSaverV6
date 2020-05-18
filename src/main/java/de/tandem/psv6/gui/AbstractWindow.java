@@ -5,6 +5,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 public abstract class AbstractWindow {
     protected GridPane grid;
     protected Stage stage;
@@ -17,6 +19,14 @@ public abstract class AbstractWindow {
     protected TextInputControl addField(int gridIndex, String labelText, boolean isPassword) {
         var label = new Label(labelText);
         var input = isPassword ? new PasswordField() : new TextField();
+        grid.addRow(gridIndex, label, input);
+        return input;
+    }
+
+    protected ComboBox<String> addCombo(int gridIndex, String labelText, List<String> items) {
+        var label = new Label(labelText);
+        var input = new ComboBox<String>();
+        input.getItems().addAll(items);
         grid.addRow(gridIndex, label, input);
         return input;
     }
