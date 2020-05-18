@@ -18,7 +18,7 @@ public class RestartDialog extends Dialog {
     }
 
     @Override
-    void initNodes() {
+    protected void initNodes() {
         var label1 = new Label("You need to Restart for the Settings to apply.");
         var label2 = new Label("Do you want to restart now?");
         GridPane.setHalignment(label1, HPos.CENTER);
@@ -43,11 +43,5 @@ public class RestartDialog extends Dialog {
             });
         });
         cancelButton.setOnAction(event -> stage.close());
-    }
-
-    @Override
-    void setCloseEvent() {
-        closeEventHandler = windowEvent -> {
-        };
     }
 }
