@@ -1,15 +1,12 @@
 package de.tandem.psv6.gui.dialogs;
 
-import de.tandem.psv6.App;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 public class RegisterDialog extends Dialog {
     public RegisterDialog(GUIOwner owner) {
@@ -42,7 +39,6 @@ public class RegisterDialog extends Dialog {
         grid.addRow(2, password2Label, password2Input);
 
         okButton.setOnAction(event -> {
-            // TODO proper Check
             var name = nameInput.getText();
             var password = passwordInput.getText();
             var password2 = password2Input.getText();
@@ -51,6 +47,7 @@ public class RegisterDialog extends Dialog {
             else if (password.isBlank()) new ErrorDialog(owner, stage, "Password is blank.");
             else if (!password.equals(password2)) new ErrorDialog(owner, stage, "Passwords don't match.");
             else {
+                // TODO save User
                 stage.close();
             }
         });

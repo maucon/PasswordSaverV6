@@ -1,9 +1,8 @@
 package de.tandem.psv6.gui;
 
 import de.tandem.psv6.App;
+import de.tandem.psv6.gui.dialogs.ErrorDialog;
 import de.tandem.psv6.gui.dialogs.RegisterDialog;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -19,7 +18,7 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 
-public class LogIn  implements GUIOwner{
+public class LogIn implements GUIOwner {
     private final App app;
     private final Stage stage;
     private final BorderPane root;
@@ -78,12 +77,13 @@ public class LogIn  implements GUIOwner{
 
         // Event Listeners:
         loginButton.setOnAction(event -> {
-            // TODO proper Check
             var name = nameInput.getText();
             var password = nameInput.getText();
-            if (name.isBlank() || password.isBlank()) {
-                System.out.println("Wrong");
-            } else {
+
+            if (name.isBlank()) new ErrorDialog(this, "Name is blank.");
+            else if (password.isBlank()) new ErrorDialog(this, "Password is blank.");
+//            else if () new ErrorDialog(this, "Username or Passowrd is incorrect."); // TODO proper check
+            else {
                 stage.close();
                 app.getStage().show();
             }
@@ -95,6 +95,7 @@ public class LogIn  implements GUIOwner{
     public Stage getStage() {
         return stage;
     }
+
     @Override
     public String getStyle() {
         return app.getStyle();
