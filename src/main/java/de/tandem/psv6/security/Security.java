@@ -1,5 +1,6 @@
 package de.tandem.psv6.security;
 
+import de.tandem.psv6.database.Database;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.crypto.Cipher;
@@ -36,6 +37,10 @@ public class Security {
         var cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(mode, new SecretKeySpec(Arrays.copyOf(key.getBytes(StandardCharsets.UTF_8), 32), "AES"));
         return cipher;
+    }
+
+    public static boolean passwordMatches(String username, String password) {
+        return save_hash(username, password).equals(Database.getUserHashedPassword(username));
     }
 
 }

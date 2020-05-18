@@ -4,6 +4,7 @@ import de.tandem.psv6.App;
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.gui.dialogs.ErrorDialog;
 import de.tandem.psv6.gui.dialogs.RegisterDialog;
+import de.tandem.psv6.security.Security;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -75,7 +76,8 @@ public class LogIn extends AbstractWindow implements GUIOwner {
 
             if (name == null) new ErrorDialog(this, "Name not selected.");
             else if (password.isBlank()) new ErrorDialog(this, "Password is blank.");
-//            else if () new ErrorDialog(this, "Username or Passowrd is incorrect."); // TODO proper check
+            else if (!Security.passwordMatches(name, password))
+                new ErrorDialog(this, "Username or Password is incorrect.");
             else {
                 stage.close();
                 app.getStage().show();
