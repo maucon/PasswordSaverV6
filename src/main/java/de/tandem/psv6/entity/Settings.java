@@ -1,6 +1,9 @@
 package de.tandem.psv6.entity;
 
-public class Setting {
+import lombok.ToString;
+
+@ToString
+public class Settings {
 
     public static boolean darkMode = true;
 
