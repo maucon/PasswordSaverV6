@@ -3,36 +3,20 @@ package de.tandem.psv6.gui.dialogs;
 import de.tandem.psv6.App;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.application.Platform;
-import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class RestartDialog extends Dialog {
 
     public RestartDialog(GUIOwner owner) {
-        super(owner, "Warning", 200 , 250 );
+        super(owner, "Warning", 200, 250);
     }
 
     @Override
     protected void initNodes() {
-        var label1 = new Label("You need to Restart for the Settings to apply.");
-        var label2 = new Label("Do you want to restart now?");
-        GridPane.setHalignment(label1, HPos.CENTER);
-        GridPane.setHalignment(label2, HPos.CENTER);
-        grid.addRow(0, label1);
-        grid.addRow(1, label2);
-        var okButton = new Button("OK");
-        var cancelButton = new Button("Cancel");
-        var box = new HBox(okButton, cancelButton);
-        box.setAlignment(Pos.CENTER);
-        box.setSpacing(50 * owner.getHScale());
-        grid.addRow(2, box);
+        addLabel(0, "You need to Restart for the Settings to apply.");
+        addLabel(1, "Do you want to restart now?");
 
-        okButton.setOnAction(event -> {
+        addOkCancelButtons(2).setOnAction(event -> {
             stage.close();
             owner.getStage().close();
             Platform.runLater(() -> {
@@ -42,6 +26,5 @@ public class RestartDialog extends Dialog {
                 }
             });
         });
-        cancelButton.setOnAction(event -> stage.close());
     }
 }
