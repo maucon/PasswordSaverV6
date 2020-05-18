@@ -1,6 +1,7 @@
 package de.tandem.psv6.database;
 
 import de.tandem.psv6.entity.Entry;
+import de.tandem.psv6.entity.Setting;
 import de.tandem.psv6.entity.User;
 import de.tandem.psv6.exceptions.UserAlreadyExistsException;
 
@@ -16,10 +17,11 @@ public class Database {
     private static final String DATABASE_PATH = "database/";
     private static final String PASSWORD_FILE_NAME = "user.key";
     private static final String ENTRY_FOLDER_NAME = "entries/";
-    private static final String BACKUP_FOLDER_NAME = "backup/";
+    private static final String BACKUP_FOLDER_NAME = "backups/";
     private static final String ENTRY_FILE_EXTENSION = ".entry";
+    private static final String CONFIG_FILE_NAME = "config.cfg";
 
-    private String userPath;
+    private final String userPath;
 
     public Database(String username) {
         this.userPath = DATABASE_PATH + username + "/";
@@ -31,11 +33,14 @@ public class Database {
         if (!new File(userPath).mkdir())
             throw new UserAlreadyExistsException();
 
-        new File(userPath + ENTRY_FOLDER_NAME).mkdir();
-        new File(userPath + BACKUP_FOLDER_NAME).mkdir();
-
         try (var bufferedWriter = new BufferedWriter(new FileWriter(new File(userPath + PASSWORD_FILE_NAME)))) {
+
+            new File(userPath + ENTRY_FOLDER_NAME).mkdir();
+            new File(userPath + BACKUP_FOLDER_NAME).mkdir();
+            new File(userPath + CONFIG_FILE_NAME).createNewFile();
+
             bufferedWriter.write(user.getHashedPassword());
+
         } catch (IOException ignored) {
         }
 
@@ -51,6 +56,7 @@ public class Database {
             return bufferedReader.readLine();
         } catch (IOException ignored) {
         }
+
         return "";
     }
 
@@ -69,4 +75,17 @@ public class Database {
         return entryList;
     }
 
+    public void loadUserSettings() {
+        try (var bufferedReader = new BufferedReader(new FileReader(userPath + CONFIG_FILE_NAME))) {
+            Setting.darkMode = bufferedReader.readLine().equals("true");
+        } catch (IOException ignored) {
+        }
+    }
+
+    public void saveUserSettings() {
+        try (var bufferedWriter = new BufferedWriter(new FileWriter(new File(userPath + CONFIG_FILE_NAME)))) {
+            bufferedWriter.write(Setting.darkMode ? "true" : "false");
+        } catch (IOException ignored) {
+        }
+    }
 }
