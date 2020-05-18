@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 public class RestartDialog extends Dialog {
 
     public RestartDialog(GUIOwner owner) {
-        super(owner, "Warning", 200 * owner.getHScale(), 250 * owner.getVScale());
+        super(owner, "Warning", 200 , 250 );
     }
 
     @Override

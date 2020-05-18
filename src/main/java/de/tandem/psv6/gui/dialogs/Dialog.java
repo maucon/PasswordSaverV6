@@ -19,6 +19,10 @@ public abstract class Dialog {
     EventHandler<WindowEvent> closeEventHandler;
 
     public Dialog(GUIOwner owner, String title, double width, double height) {
+        this(owner, owner.getStage(), title, width, height);
+    }
+
+    public Dialog(GUIOwner owner, Stage ownerStage, String title, double width, double height) {
         this.owner = owner;
 
         grid = new GridPane();
@@ -28,10 +32,10 @@ public abstract class Dialog {
 
         stage = new Stage();
         stage.setTitle(title);
-        stage.setWidth(width);
-        stage.setHeight(height);
+        stage.setWidth(width * owner.getHScale());
+        stage.setHeight(height * owner.getVScale());
         stage.initStyle(StageStyle.UTILITY);
-        stage.initOwner(owner.getStage());
+        stage.initOwner(ownerStage);
         stage.initModality(Modality.WINDOW_MODAL);
         stage.setScene(new Scene(grid));
 

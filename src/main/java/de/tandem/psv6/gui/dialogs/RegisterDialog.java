@@ -13,11 +13,14 @@ import javafx.stage.Stage;
 
 public class RegisterDialog extends Dialog {
     public RegisterDialog(GUIOwner owner) {
-        super(owner,"Register", 500 * owner.getHScale(), 400 * owner.getVScale());
+        super(owner, "Register", 500, 400);
     }
 
     @Override
     void initNodes() {
+        grid.setHgap(25 * owner.getHScale());
+        grid.setVgap(10 * owner.getVScale());
+
         var okButton = new Button("OK");
         var cancelButton = new Button("Cancel");
         var box = new HBox(okButton, cancelButton);
@@ -34,19 +37,20 @@ public class RegisterDialog extends Dialog {
         var passwordInput = new PasswordField();
         grid.addRow(1, passwordLabel, passwordInput);
 
-        var passwordLabelRetype = new Label("Retype Password:");
-        var passwordInputRetype = new PasswordField();
-        grid.addRow(2, passwordLabelRetype, passwordInputRetype);
+        var password2Label = new Label("Retype Password:");
+        var password2Input = new PasswordField();
+        grid.addRow(2, password2Label, password2Input);
 
         okButton.setOnAction(event -> {
             // TODO proper Check
             var name = nameInput.getText();
-            var password = nameInput.getText();
-            if (name.isBlank() || password.isBlank()) {
-                System.out.println("Wrong");
-            } else if (!passwordInputRetype.getText().equals(password)) {
-                new ErrorDialog(owner, "Passwords don't Match");
-            } else {
+            var password = passwordInput.getText();
+            var password2 = password2Input.getText();
+
+            if (name.isBlank()) new ErrorDialog(owner, stage, "Name is blank.");
+            else if (password.isBlank()) new ErrorDialog(owner, stage, "Password is blank.");
+            else if (!password.equals(password2)) new ErrorDialog(owner, stage, "Passwords don't match.");
+            else {
                 stage.close();
             }
         });
