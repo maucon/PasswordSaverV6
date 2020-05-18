@@ -1,6 +1,5 @@
 package de.tandem.psv6.gui.dialogs;
 
-import de.tandem.psv6.App;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -45,7 +44,11 @@ public abstract class Dialog {
         stage.show();
     }
 
-    abstract void initNodes();
+    protected void initNodes() {
+    }
 
-    abstract void setCloseEvent();
+    protected void setCloseEvent() {
+        closeEventHandler = windowEvent -> {
+        };
+    }
 }

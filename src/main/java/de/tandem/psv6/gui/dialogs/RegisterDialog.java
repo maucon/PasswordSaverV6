@@ -13,8 +13,9 @@ public class RegisterDialog extends Dialog {
         super(owner, "Register", 500, 400);
     }
 
+
     @Override
-    void initNodes() {
+    protected void initNodes() {
         grid.setHgap(25 * owner.getHScale());
         grid.setVgap(10 * owner.getVScale());
 
@@ -52,10 +53,5 @@ public class RegisterDialog extends Dialog {
             }
         });
         cancelButton.setOnAction(event -> stage.close());
-    }
-
-    @Override
-    void setCloseEvent() {
-        closeEventHandler = windowEvent -> stage.close();
     }
 }
