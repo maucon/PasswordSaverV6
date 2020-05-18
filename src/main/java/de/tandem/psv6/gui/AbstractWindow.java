@@ -1,10 +1,8 @@
 package de.tandem.psv6.gui;
 
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public abstract class AbstractWindow {
@@ -26,10 +24,9 @@ public abstract class AbstractWindow {
     protected Button addOkCancelButtons(int gridIndex) {
         var okButton = new Button("OK");
         var cancelButton = new Button("Cancel");
-        var box = new HBox(okButton, cancelButton);
-        box.setAlignment(Pos.CENTER);
-        box.setSpacing(50 * owner.getHScale());
-        grid.addRow(gridIndex, box);
+        grid.addRow(gridIndex, okButton, cancelButton);
+        GridPane.setHalignment(okButton, HPos.CENTER);
+        GridPane.setHalignment(cancelButton, HPos.CENTER);
         cancelButton.setOnAction(event -> stage.close());
         return okButton;
     }
