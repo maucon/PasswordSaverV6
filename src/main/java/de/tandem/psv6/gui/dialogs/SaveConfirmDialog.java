@@ -14,7 +14,7 @@ public class SaveConfirmDialog extends Dialog {
     private final String newPassword;
 
     public SaveConfirmDialog(GUIOwner owner, Stage ownerStage, Entry entry, String newLogin, String newPassword) {
-        super(owner, ownerStage, "Error", 400, 200);
+        super(owner, ownerStage, "Confirm Changes", 400, 200);
         this.entry = entry;
         this.newLogin = newLogin;
         this.newPassword = newPassword;

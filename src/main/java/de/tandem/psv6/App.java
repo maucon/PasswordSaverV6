@@ -1,5 +1,7 @@
 package de.tandem.psv6;
 
+import de.tandem.psv6.database.Database;
+import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.GUIOwner;
 import de.tandem.psv6.gui.LogIn;
@@ -69,5 +71,9 @@ public class App extends Application implements GUIOwner {
 
     public void addNode(Node node) {
         flowPane.getChildren().add(node);
+    }
+
+    public void removeEntry(Entry entry) {
+        flowPane.getChildren().remove(Database.getInstance().getAllEntries().indexOf(entry));
     }
 }
