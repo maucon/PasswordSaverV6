@@ -1,5 +1,6 @@
 package de.tandem.psv6.gui.dialogs;
 
+import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.scene.control.Button;
@@ -19,10 +20,10 @@ public class SaveConfirmDialog extends Dialog {
         this.newPassword = newPassword;
 
         grid.addRow(0, new Label("You have some unsaved changes. Save now?"));
-        addOkCancelButtons(1, true, 200).onActionProperty().set(event -> {
-            System.out.println("EDITING ENTRY");
+        addOkCancelButtons(1, true, 100).onActionProperty().set(event -> {
             entry.setLogin(newLogin);
             entry.setPassword(newPassword);
+            Database.getInstance().editEntry(entry);
             stage.close();
             ownerStage.close();
         });
