@@ -19,7 +19,6 @@ public class Database {
     private static final String DATABASE_PATH = "database/";
     private static final String PASSWORD_FILE_NAME = "user.key";
     private static final String ENTRY_FOLDER_NAME = "entries/";
-    private static final String BACKUP_FOLDER_NAME = "backups/";
     private static final String ENTRY_FILE_EXTENSION = ".entry";
     private static final String CONFIG_FILE_NAME = "config.cfg";
 
@@ -53,7 +52,7 @@ public class Database {
 
         try (var bufferedWriter = new BufferedWriter(new FileWriter(new File(userPath + PASSWORD_FILE_NAME)))) {
 
-            if (!new File(userPath + ENTRY_FOLDER_NAME).mkdir() || !new File(userPath + BACKUP_FOLDER_NAME).mkdir())
+            if (!new File(userPath + ENTRY_FOLDER_NAME).mkdir())
                 throw new FileModificationException("Couldn't create folder");
 
             bufferedWriter.write(user.getHashedPassword());
