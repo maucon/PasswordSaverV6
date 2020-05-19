@@ -9,6 +9,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -90,6 +92,12 @@ public class LogIn extends AbstractWindow implements GUIOwner {
             }
         });
         registerButton.setOnAction(event -> new RegisterDialog(this, nameInput));
+        passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER) loginButton.fire();
+            }
+        });
     }
 
     @Override
