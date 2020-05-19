@@ -27,7 +27,7 @@ public class Database {
 
     private final String userPath;
 
-    public Database(String username) {
+    private Database(String username) {
         this.userPath = DATABASE_PATH + username + "/";
     }
 
