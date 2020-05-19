@@ -57,16 +57,6 @@
     -fx-background-insets: 0, 1 1 1 1;
 }
 
-* {
-    -bg-color: #1c1c1c;
-    -button-color: #363636;
-    -menu-color: #222223;
-    -menu-font-color: #868784;
-    -border-color-light: #585859;
-    -border-color-dark: #282829;
-    -font-color: #eeeeee;
-    -hover-color: #003f65;
-}
 
 .button, .combo-box, .text-field, .combo-box .list-cell, .combo-box .label, .combo-box .text-field {
     -fx-background-color: -button-color;
@@ -80,4 +70,15 @@
     -fx-background: -hover-color;
     -fx-text-fill: -font-color;
     -fx-prompt-text-fill: -font-color;
+}
+
+* {
+    -bg-color: #1c1c1c;
+    -button-color: #363636;
+    -menu-color: #222223;
+    -menu-font-color: #868784;
+    -border-color-light: #585859;
+    -border-color-dark: #282829;
+    -font-color: #eeeeee;
+    -hover-color: #003f65;
 }
