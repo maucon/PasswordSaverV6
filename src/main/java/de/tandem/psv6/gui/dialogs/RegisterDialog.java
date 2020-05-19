@@ -4,7 +4,10 @@ import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.User;
 import de.tandem.psv6.gui.GUIOwner;
 import de.tandem.psv6.security.Security;
+import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class RegisterDialog extends Dialog {
     private final ComboBox<String> comboBox;
@@ -23,8 +26,9 @@ public class RegisterDialog extends Dialog {
         var nameInput = addField(0, "Name:");
         var passwordInput = addField(1, "Password:", true);
         var password2Input = addField(2, "Retype Password:", true);
+        var okButton = addOkCancelButtons(3);
 
-        addOkCancelButtons(3).setOnAction(event -> {
+        okButton.setOnAction(event -> {
             var name = nameInput.getText();
             var password = passwordInput.getText();
             var password2 = password2Input.getText();
@@ -39,5 +43,13 @@ public class RegisterDialog extends Dialog {
                 stage.close();
             }
         });
+        var event = new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER) okButton.fire();
+            }
+        };
+        passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event);
+        password2Input.addEventHandler(KeyEvent.KEY_PRESSED, event);
     }
 }
