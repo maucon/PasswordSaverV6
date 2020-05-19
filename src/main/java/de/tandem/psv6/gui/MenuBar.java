@@ -11,12 +11,11 @@ import javafx.scene.control.MenuItem;
 public class MenuBar {
 
     private final App app;
-    private final Menu[] menus;
     private final MenuItem[][] items;
 
     public MenuBar(App app) {
         this.app = app;
-        menus = new Menu[]{new Menu("_File"), new Menu("_Options")};
+        Menu[] menus = new Menu[]{new Menu("_File"), new Menu("_Options")};
         items = new MenuItem[menus.length][];
         items[0] = new MenuItem[]{new MenuItem("_New"), new MenuItem("_Reload"), new MenuItem("Exit")};
         items[1] = new MenuItem[]{new CheckMenuItem("_Dark Mode")};
@@ -33,11 +32,6 @@ public class MenuBar {
             Database.getInstance().saveUserSettings();
             new RestartDialog(app);
         });
-    }
-
-    private void setMnemonics() {
-        for (Menu m : menus) m.setMnemonicParsing(true);
-        for (MenuItem[] iArr : items) for (MenuItem i : iArr) i.setMnemonicParsing(true);
     }
 
 }
