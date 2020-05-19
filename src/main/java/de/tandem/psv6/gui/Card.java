@@ -19,6 +19,8 @@ public class Card {
                 System.out.println(entry.toString());
             }
         });
+        pane.setPrefWidth(200 * owner.getHScale());
+        pane.setPrefHeight(200 * owner.getVScale());
 
         return pane;
     }
