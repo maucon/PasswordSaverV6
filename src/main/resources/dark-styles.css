@@ -74,8 +74,10 @@
 
 #Card {
     -fx-border-radius: 10%;
-    -fx-border-style: groove;
-    -fx-border-color: red;
+    -fx-background-color: -bg-color;
+    -fx-background-radius: 10%;
+    -fx-border-color: -menu-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.4), 10, 0, 5, 5);
 }
 
 * {
