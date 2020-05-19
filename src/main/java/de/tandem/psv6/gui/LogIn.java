@@ -42,7 +42,6 @@ public class LogIn extends AbstractWindow implements GUIOwner {
 
         vScale.bind(stage.heightProperty().divide(700));
         hScale.bind(stage.widthProperty().divide(400));
-        System.out.println(getHScale());
 
         initNodes();
         stage.show();
