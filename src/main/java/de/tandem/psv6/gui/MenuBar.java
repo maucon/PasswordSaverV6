@@ -32,6 +32,7 @@ public class MenuBar {
             Database.getInstance().saveUserSettings();
             new RestartDialog(app);
         });
+        items[0][2].setOnAction(event -> app.getStage().close());
     }
 
 }
