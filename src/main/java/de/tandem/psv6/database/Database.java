@@ -11,7 +11,10 @@ import de.tandem.psv6.security.Security;
 import java.io.*;
 import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Database {
@@ -23,14 +26,13 @@ public class Database {
     private static final String CONFIG_FILE_NAME = "config.cfg";
 
     private static Database instance;
-
     private final String userPath;
 
     private Database(String username) {
         this.userPath = DATABASE_PATH + username + "/";
     }
 
-    // ------------------------- STATIC -------------------------
+    // ------------------------- SINGLETON -------------------------
     public static Database getInstance() {
         if (instance == null) throw new NotLoggedInException();
         return instance;
@@ -44,6 +46,7 @@ public class Database {
         instance = null;
     }
 
+    // ------------------------- STATIC -------------------------
     public static void setupUser(User user) {
         String userPath = DATABASE_PATH + user.getUsername() + "/";
 
@@ -71,37 +74,32 @@ public class Database {
         try (var bufferedReader = new BufferedReader(new FileReader(new File(DATABASE_PATH + username + "/" + PASSWORD_FILE_NAME)))) {
             return bufferedReader.readLine();
         } catch (IOException ignored) {
+            throw new FileModificationException("Can't read users hashed password: " + username);
         }
-
-        return "";
     }
 
     // ------------------------- LOGGED IN USER -------------------------
-    public ArrayList<Entry> getAllEntries() {
-        var entryList = new ArrayList<Entry>();
-        var key = Security.accessGuardedKey(Security.guardedString);
+    public List<Entry> getAllEntries() {
+        return Arrays.stream(Objects.requireNonNull(new File(userPath + ENTRY_FOLDER_NAME).listFiles()))
+                .filter(file -> file.getName().endsWith(ENTRY_FILE_EXTENSION))
+                .map(file -> {
+                    try (var out = new ObjectInputStream(Security.decryptStream(new FileInputStream(file.getPath()), Security.accessGuardedKey(Security.guardedString)))) {
 
-        for (File file : Objects.requireNonNull(new File(userPath + ENTRY_FOLDER_NAME).listFiles())) {
-            if (file.getName().endsWith(ENTRY_FILE_EXTENSION))
+                        var entry = (Entry) out.readObject();
+                        entry.setFileName(file.getName());
+                        return entry;
 
-                try (ObjectInputStream out = new ObjectInputStream(Security.decryptStream(new FileInputStream(file.getPath()), key))) {
+                    } catch (IOException | ClassNotFoundException | GeneralSecurityException ignored) {
+                    }
 
-                    Entry entry = (Entry) out.readObject();
-                    entry.setFileName(file.getName());
-                    entryList.add(entry);
-
-                } catch (IOException | ClassNotFoundException | GeneralSecurityException ignored) {
-                }
-        }
-
-        return entryList;
+                    throw new FileModificationException("Can't read entry: " + file.getName());
+                })
+                .collect(Collectors.toList());
     }
 
     public void addEntry(Entry entry) {
-        var key = Security.accessGuardedKey(Security.guardedString);
-        var date = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
-
-        try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(userPath + ENTRY_FOLDER_NAME + date + ENTRY_FILE_EXTENSION), key))) {
+        try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(
+                userPath + ENTRY_FOLDER_NAME + new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + ENTRY_FILE_EXTENSION), Security.accessGuardedKey(Security.guardedString)))) {
             out.writeObject(entry);
         } catch (IOException | GeneralSecurityException ignored) {
         }
