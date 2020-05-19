@@ -5,7 +5,6 @@ import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.entity.User;
 import de.tandem.psv6.exceptions.UserAlreadyExistsException;
 import de.tandem.psv6.security.Security;
-import org.identityconnectors.common.security.GuardedString;
 
 import java.io.*;
 import java.security.GeneralSecurityException;
@@ -29,7 +28,7 @@ public class Database {
     }
 
     // ------------------------- STATIC -------------------------
-    public static Database setupUser(User user) {
+    public static void setupUser(User user) {
         String userPath = DATABASE_PATH + user.getUsername() + "/";
 
         if (!new File(userPath).mkdir())
@@ -45,9 +44,7 @@ public class Database {
         } catch (IOException ignored) {
         }
 
-        Database database = new Database(user.getUsername());
-        database.saveUserSettings();
-        return database;
+        new Database(user.getUsername()).saveUserSettings();
     }
 
     public static List<String> getUserList() {
@@ -71,9 +68,14 @@ public class Database {
         for (File file : Objects.requireNonNull(new File(userPath + ENTRY_FOLDER_NAME).listFiles())) {
             if (file.getName().endsWith(ENTRY_FILE_EXTENSION))
 
-                try (ObjectInputStream out = new ObjectInputStream(Security.decryptStream(new FileInputStream(file.getPath()), key));) {
-                    entryList.add((Entry) out.readObject());
+                try (ObjectInputStream out = new ObjectInputStream(Security.decryptStream(new FileInputStream(file.getPath()), key))) {
+
+                    Entry entry = (Entry) out.readObject();
+                    entry.setFileName(file.getName());
+                    entryList.add(entry);
+
                 } catch (IOException | ClassNotFoundException | GeneralSecurityException ignored) {
+                    ignored.printStackTrace();
                 }
         }
 
@@ -88,6 +90,10 @@ public class Database {
             out.writeObject(entry);
         } catch (IOException | GeneralSecurityException ignored) {
         }
+    }
+
+    public void removeEntry(Entry entry) {
+
     }
 
     // ------------------------- SETTINGS -------------------------
