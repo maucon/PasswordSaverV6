@@ -17,7 +17,7 @@ public class MenuBar {
         this.app = app;
         Menu[] menus = new Menu[]{new Menu("_File"), new Menu("_Options")};
         items = new MenuItem[menus.length][];
-        items[0] = new MenuItem[]{new MenuItem("_New"), new MenuItem("_Reload"), new MenuItem("Exit")};
+        items[0] = new MenuItem[]{new MenuItem("_New"), new MenuItem("Exit")};
         items[1] = new MenuItem[]{new CheckMenuItem("_Dark Mode")};
         addListeners();
         for (int i = 0; i < menus.length; i++) menus[i].getItems().addAll(items[i]);
@@ -32,7 +32,7 @@ public class MenuBar {
             Database.getInstance().saveUserSettings();
             new RestartDialog(app);
         });
-        items[0][2].setOnAction(event -> app.getStage().close());
+        items[0][1].setOnAction(event -> app.getStage().close());
     }
 
 }
