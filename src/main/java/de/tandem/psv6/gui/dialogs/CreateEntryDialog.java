@@ -13,7 +13,7 @@ public class CreateEntryDialog extends Dialog {
     private TextInputControl descriptionField;
 
     public CreateEntryDialog(App app) {
-        super(app, "Create new", 400, 300);
+        super(app, "Create new", 450, 300);
     }
 
     @Override
@@ -24,21 +24,17 @@ public class CreateEntryDialog extends Dialog {
         loginField = addField(1, "Login:");
         passwordField = addField(2, "Password:", true);
         descriptionField = addField(3, "Description:");
-    }
-
-    @Override
-    protected void setCloseEvent() {
-        closeEventHandler = windowEvent -> {
+        addOkCancelButtons(4).onActionProperty().set(event -> {
             if (!nameField.getText().isBlank() || !loginField.getText().isBlank() || !passwordField.getText().isBlank()) {
                 if (nameField.getText().isBlank() || loginField.getText().isBlank() || passwordField.getText().isBlank()) {
-                    windowEvent.consume();
                     new ErrorDialog(owner, stage, "Not all required Fields are filled in.");
                     return;
                 }
                 var entry = new Entry(nameField.getText(), loginField.getText(), passwordField.getText(), descriptionField.getText(), null);
                 Database.getInstance().addEntry(entry);
                 ((App) owner).addNode(Card.createCard(((App) owner), entry));
+                stage.close();
             }
-        };
+        });
     }
 }
