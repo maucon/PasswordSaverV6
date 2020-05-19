@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
+import org.identityconnectors.common.security.GuardedString;
 
 
 public class LogIn extends AbstractWindow implements GUIOwner {
@@ -80,6 +81,7 @@ public class LogIn extends AbstractWindow implements GUIOwner {
                 new ErrorDialog(this, "Username or Password is incorrect.");
             else {
                 Database.createInstance(name).loadUserSettings();
+                Security.guardedString = new GuardedString(Security.key_hash(password).toCharArray());
                 app.updateStyle();
                 stage.close();
                 new MenuBar(app);
