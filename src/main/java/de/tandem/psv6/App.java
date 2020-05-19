@@ -5,10 +5,10 @@ import de.tandem.psv6.gui.GUIOwner;
 import de.tandem.psv6.gui.LogIn;
 import javafx.application.Application;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 
@@ -18,7 +18,7 @@ public class App extends Application implements GUIOwner {
     private Stage stage;
     private String style;
     private BorderPane root;
-    private GridPane gridPane;
+    private FlowPane flowPane;
 
     public static void main(String[] args) {
         launch(args);
@@ -35,11 +35,11 @@ public class App extends Application implements GUIOwner {
         root = new BorderPane();
         root.getStylesheets().add(style);
 
-        gridPane = new GridPane();
-        gridPane.setId("gridPane");
-        gridPane.getStylesheets().add(style);
-        gridPane.setAlignment(Pos.CENTER);
-        root.setCenter(gridPane);
+        flowPane = new FlowPane();
+        flowPane.setId("gridPane");
+        flowPane.getStylesheets().add(style);
+        flowPane.setAlignment(Pos.CENTER);
+        root.setCenter(flowPane);
 
         var scene = new Scene(root);
         root.setPrefWidth(1280);
@@ -47,11 +47,6 @@ public class App extends Application implements GUIOwner {
 
         vScale.bind(scene.heightProperty().divide(1280));
         hScale.bind(scene.widthProperty().divide(720));
-
-        var cs = new ColumnConstraints();
-        cs.maxWidthProperty().bind(hScale.multiply(150));
-        cs.minWidthProperty().bind(hScale.multiply(80));
-        gridPane.getColumnConstraints().addAll(cs, cs, cs, cs);
 
         stage.setScene(scene);
         new LogIn(this);
@@ -66,7 +61,11 @@ public class App extends Application implements GUIOwner {
         style = Settings.darkMode ? "dark-styles.css" : "light-styles.css";
         root.getStylesheets().clear();
         root.getStylesheets().add(style);
-        gridPane.getStylesheets().clear();
-        gridPane.getStylesheets().add(style);
+        flowPane.getStylesheets().clear();
+        flowPane.getStylesheets().add(style);
+    }
+
+    public void addNode(Node node) {
+        flowPane.getChildren().add(node);
     }
 }
