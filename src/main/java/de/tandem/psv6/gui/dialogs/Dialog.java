@@ -19,6 +19,10 @@ public abstract class Dialog extends AbstractWindow {
         this(owner, owner.getStage(), title, width, height);
     }
 
+    public Dialog(GUIOwner owner, String title, double width, double height, Object trash) {
+        this(owner, owner.getStage(), title, width, height);
+    }
+
     public Dialog(GUIOwner owner, Stage ownerStage, String title, double width, double height) {
         this.owner = owner;
 

@@ -2,6 +2,7 @@ package de.tandem.psv6.gui;
 
 import de.tandem.psv6.App;
 import de.tandem.psv6.entity.Entry;
+import de.tandem.psv6.gui.dialogs.EntryDialog;
 import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -18,6 +19,7 @@ public class Card {
             @Override
             public void handle(MouseEvent event) {
                 System.out.println(entry.toString());
+                new EntryDialog(app, entry);
             }
         });
         pane.setPrefWidth(200 * app.getHScale());
