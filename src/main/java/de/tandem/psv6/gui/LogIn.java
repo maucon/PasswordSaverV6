@@ -21,9 +21,9 @@ import org.identityconnectors.common.security.GuardedString;
 
 
 public class LogIn extends AbstractWindow implements GUIOwner {
+
     private final App app;
     private final BorderPane root;
-    private EventHandler<WindowEvent> closeEventHandler;
 
     public LogIn(App app) {
         this.app = app;
@@ -79,7 +79,7 @@ public class LogIn extends AbstractWindow implements GUIOwner {
             if (name == null) new ErrorDialog(this, "Name not selected.");
             else if (password.isBlank()) new ErrorDialog(this, "Password is blank.");
             else if (!Security.passwordMatches(name, password))
-                new ErrorDialog(this, "Username or Password is incorrect.");
+                new ErrorDialog(this, "Password is incorrect.");
             else {
                 Database.createInstance(name).loadUserSettings();
                 Security.guardedString = new GuardedString(Security.key_hash(password).toCharArray());
