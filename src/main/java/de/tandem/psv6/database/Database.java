@@ -107,7 +107,7 @@ public class Database {
 
     public void removeEntry(Entry entry) {
         if (!new File(userPath + ENTRY_FOLDER_NAME + entry.getFileName()).delete())
-            throw new FileModificationException("Couldn't delete entry");
+            throw new FileModificationException("Couldn't delete entry: " + entry);
     }
 
     public void editEntry(Entry entry) {
