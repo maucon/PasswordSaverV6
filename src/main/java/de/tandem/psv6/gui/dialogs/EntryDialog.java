@@ -11,12 +11,14 @@ public class EntryDialog extends Dialog {
     private final Entry entry;
     private TextInputControl nameField;
     private TextInputControl passwordField;
+    private TextInputControl descriptionField;
 
     public EntryDialog(GUIOwner owner, Entry entry) {
         super(owner, entry.getName(), 500, 400);
         this.entry = entry;
         nameField.setText(entry.getLogin());
         passwordField.setText(entry.getPassword());
+        descriptionField.setText(entry.getDescription());
     }
 
     @Override
@@ -33,6 +35,8 @@ public class EntryDialog extends Dialog {
         var copyPasswordButton = new Button("Copy");
         grid.add(copyPasswordButton, 2, 1);
 
+        descriptionField = addField(2, "Description:");
+
         copyNameButton.onActionProperty().set(e -> {
             var clipboard = new ClipboardContent();
             clipboard.putString(nameField.getText());
@@ -48,9 +52,9 @@ public class EntryDialog extends Dialog {
     @Override
     protected void setCloseEvent() {
         closeEventHandler = windowEvent -> {
-            if (!nameField.getText().equals(entry.getLogin()) || !passwordField.getText().equals(entry.getPassword())) {
+            if (!nameField.getText().equals(entry.getLogin()) || !passwordField.getText().equals(entry.getPassword()) || !descriptionField.getText().equals(entry.getDescription())) {
                 windowEvent.consume();
-                new SaveConfirmDialog(owner, stage, entry, nameField.getText(), passwordField.getText());
+                new SaveConfirmDialog(owner, stage, entry, nameField.getText(), passwordField.getText(), descriptionField.getText());
             }
         };
     }
