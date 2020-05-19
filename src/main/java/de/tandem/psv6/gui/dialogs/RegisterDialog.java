@@ -49,6 +49,7 @@ public class RegisterDialog extends Dialog {
                 if (event.getCode() == KeyCode.ENTER) okButton.fire();
             }
         };
+        nameInput.addEventHandler(KeyEvent.KEY_PRESSED, event);
         passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event);
         password2Input.addEventHandler(KeyEvent.KEY_PRESSED, event);
     }
