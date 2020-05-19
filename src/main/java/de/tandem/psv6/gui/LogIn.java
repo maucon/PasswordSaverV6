@@ -79,6 +79,7 @@ public class LogIn extends AbstractWindow implements GUIOwner {
             else if (!Security.passwordMatches(name, password))
                 new ErrorDialog(this, "Username or Password is incorrect.");
             else {
+                Database.createInstance(name);
                 app.updateStyle();
                 stage.close();
                 app.getStage().show();

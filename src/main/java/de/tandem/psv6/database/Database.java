@@ -3,6 +3,7 @@ package de.tandem.psv6.database;
 import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.entity.User;
+import de.tandem.psv6.exceptions.NotLoggedInException;
 import de.tandem.psv6.exceptions.UserAlreadyExistsException;
 import de.tandem.psv6.security.Security;
 
@@ -21,6 +22,8 @@ public class Database {
     private static final String ENTRY_FILE_EXTENSION = ".entry";
     private static final String CONFIG_FILE_NAME = "config.cfg";
 
+    private static Database instance;
+
     private final String userPath;
 
     public Database(String username) {
@@ -28,6 +31,19 @@ public class Database {
     }
 
     // ------------------------- STATIC -------------------------
+    public static Database getInstance() {
+        if (instance == null) throw new NotLoggedInException();
+        return instance;
+    }
+
+    public static Database createInstance(String username) {
+        return instance = new Database(username);
+    }
+
+    public static void removeInstance() {
+        instance = null;
+    }
+
     public static void setupUser(User user) {
         String userPath = DATABASE_PATH + user.getUsername() + "/";
 

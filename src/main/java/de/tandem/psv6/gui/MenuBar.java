@@ -1,6 +1,7 @@
 package de.tandem.psv6.gui;
 
 import de.tandem.psv6.App;
+import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.dialogs.RestartDialog;
 import javafx.scene.control.CheckMenuItem;
@@ -31,6 +32,7 @@ public class MenuBar {
         ((CheckMenuItem) items[3][1]).setSelected(Settings.darkMode);
         items[3][1].setOnAction(event -> {
             Settings.darkMode = !Settings.darkMode;
+            Database.getInstance().saveUserSettings();
             new RestartDialog(app);
         });
     }
