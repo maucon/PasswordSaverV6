@@ -3,7 +3,6 @@ package de.tandem.psv6;
 import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.GUIOwner;
 import de.tandem.psv6.gui.LogIn;
-import de.tandem.psv6.gui.MenuBar;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,7 +14,6 @@ import lombok.Getter;
 
 @Getter
 public class App extends Application implements GUIOwner {
-    public static final boolean DEBUG = false;
     public static final long VERSION = 14L;
     private Stage stage;
     private String style;
@@ -37,8 +35,6 @@ public class App extends Application implements GUIOwner {
         root = new BorderPane();
         root.getStylesheets().add(style);
 
-        new MenuBar(this);
-
         gridPane = new GridPane();
         gridPane.setId("gridPane");
         gridPane.getStylesheets().add(style);
@@ -58,8 +54,7 @@ public class App extends Application implements GUIOwner {
         gridPane.getColumnConstraints().addAll(cs, cs, cs, cs);
 
         stage.setScene(scene);
-        if (DEBUG) stage.show();
-        else new LogIn(this);
+        new LogIn(this);
     }
 
     @Override

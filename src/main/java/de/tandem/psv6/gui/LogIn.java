@@ -81,6 +81,7 @@ public class LogIn extends AbstractWindow implements GUIOwner {
             else {
                 Database.createInstance(name).loadUserSettings();
                 app.updateStyle();
+                new MenuBar(app);
                 stage.close();
                 app.getStage().show();
             }
