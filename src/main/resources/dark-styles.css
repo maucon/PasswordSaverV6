@@ -80,6 +80,10 @@
     -fx-effect: dropshadow(three-pass-box, rgba(255, 255, 255, 0.4), 10, 0, 0, 0);
 }
 
+#Card:hover {
+    -fx-background-color: -hover-color;
+}
+
 * {
     -bg-color: #1c1c1c;
     -button-color: #363636;
