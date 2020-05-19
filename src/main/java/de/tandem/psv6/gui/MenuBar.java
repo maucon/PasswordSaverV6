@@ -19,7 +19,7 @@ public class MenuBar {
         menus = new Menu[]{new Menu("_File"), new Menu("_Options")};
         items = new MenuItem[menus.length][];
         items[0] = new MenuItem[]{new MenuItem("_New"), new MenuItem("_Reload"), new MenuItem("Exit")};
-        items[1] = new MenuItem[]{new CheckMenuItem("_Collapse Categories"), new CheckMenuItem("_Dark Mode")};
+        items[1] = new MenuItem[]{new CheckMenuItem("_Dark Mode")};
         addListeners();
         for (int i = 0; i < menus.length; i++) menus[i].getItems().addAll(items[i]);
         javafx.scene.control.MenuBar menuBar = new javafx.scene.control.MenuBar(menus);
@@ -27,8 +27,8 @@ public class MenuBar {
     }
 
     private void addListeners() {
-        ((CheckMenuItem) items[3][1]).setSelected(Settings.darkMode);
-        items[3][1].setOnAction(event -> {
+        ((CheckMenuItem) items[1][0]).setSelected(Settings.darkMode);
+        items[1][0].setOnAction(event -> {
             Settings.darkMode = !Settings.darkMode;
             Database.getInstance().saveUserSettings();
             new RestartDialog(app);
