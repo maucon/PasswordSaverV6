@@ -73,8 +73,9 @@
 }
 
 #Card {
-    -fx-border-radius: 50%;
-    -fx-border-color: red;
+    -fx-border-radius: 10%;
+    -fx-border-color: -menu-color;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 5, 5);
 }
 
 * {

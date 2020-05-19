@@ -4,6 +4,7 @@ import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.GUIOwner;
 import de.tandem.psv6.gui.LogIn;
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -40,6 +41,7 @@ public class App extends Application implements GUIOwner {
         flowPane.hgapProperty().bind(hScale.multiply(20));
         flowPane.vgapProperty().bind(vScale.multiply(20));
         root.setCenter(flowPane);
+        BorderPane.setMargin(root.getCenter(), new Insets(20));
 
         var scene = new Scene(root);
         root.setPrefWidth(1280);
