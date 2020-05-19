@@ -3,6 +3,7 @@ package de.tandem.psv6.database;
 import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.entity.User;
+import de.tandem.psv6.exceptions.FileModificationException;
 import de.tandem.psv6.exceptions.NotLoggedInException;
 import de.tandem.psv6.exceptions.UserAlreadyExistsException;
 import de.tandem.psv6.security.Security;
@@ -52,8 +53,8 @@ public class Database {
 
         try (var bufferedWriter = new BufferedWriter(new FileWriter(new File(userPath + PASSWORD_FILE_NAME)))) {
 
-            new File(userPath + ENTRY_FOLDER_NAME).mkdir();
-            new File(userPath + BACKUP_FOLDER_NAME).mkdir();
+            if (!new File(userPath + ENTRY_FOLDER_NAME).mkdir() || !new File(userPath + BACKUP_FOLDER_NAME).mkdir())
+                throw new FileModificationException("Couldn't create folder");
 
             bufferedWriter.write(user.getHashedPassword());
 
@@ -91,7 +92,6 @@ public class Database {
                     entryList.add(entry);
 
                 } catch (IOException | ClassNotFoundException | GeneralSecurityException ignored) {
-                    ignored.printStackTrace();
                 }
         }
 
@@ -109,7 +109,13 @@ public class Database {
     }
 
     public void removeEntry(Entry entry) {
+        if (!new File(userPath + ENTRY_FOLDER_NAME + entry.getFileName()).delete())
+            throw new FileModificationException("Couldn't delete entry");
+    }
 
+    public void editEntry(Entry entry) {
+        addEntry(entry);
+        removeEntry(entry);
     }
 
     // ------------------------- SETTINGS -------------------------
