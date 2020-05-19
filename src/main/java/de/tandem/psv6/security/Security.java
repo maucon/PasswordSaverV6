@@ -16,8 +16,6 @@ import java.util.Arrays;
 
 public class Security {
 
-    private static final char[] HEX_ARRAY = "0123456789abcdef".toCharArray();
-
     public static GuardedString guardedString;
 
     public static String save_hash(String username, String string) {
