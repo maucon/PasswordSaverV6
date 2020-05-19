@@ -9,12 +9,12 @@ public interface GUIOwner {
     DoubleProperty hScale = new SimpleDoubleProperty();
     DoubleProperty vScale = new SimpleDoubleProperty();
 
-    public default double getHScale() {
+    default double getHScale() {
         return hScale.doubleValue();
     }
-    public default double getVScale() {
+    default double getVScale() {
         return vScale.doubleValue();
     }
-    public abstract Stage getStage();
-    public abstract String getStyle();
+    Stage getStage();
+    String getStyle();
 }
