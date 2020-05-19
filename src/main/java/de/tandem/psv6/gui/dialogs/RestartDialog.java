@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 public class RestartDialog extends Dialog {
 
     public RestartDialog(GUIOwner owner) {
-        super(owner, "Warning", 200, 250);
+        super(owner, "Warning", 400, 250);
     }
 
     @Override
@@ -16,7 +16,7 @@ public class RestartDialog extends Dialog {
         addLabel(0, "You need to Restart for the Settings to apply.");
         addLabel(1, "Do you want to restart now?");
 
-        addOkCancelButtons(2).setOnAction(event -> {
+        addOkCancelButtons(2, true, 70).setOnAction(event -> {
             stage.close();
             owner.getStage().close();
             Platform.runLater(() -> {

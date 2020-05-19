@@ -1,11 +1,10 @@
 package de.tandem.psv6;
 
+import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.GUIOwner;
 import de.tandem.psv6.gui.LogIn;
 import de.tandem.psv6.gui.MenuBar;
 import javafx.application.Application;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -29,7 +28,7 @@ public class App extends Application implements GUIOwner {
 
     @Override
     public void start(Stage primaryStage) {
-        style = "dark-styles.css"; //TODO Config
+        style = "dark-styles.css";
         stage = primaryStage;
         stage.setTitle("Password Saver");
         stage.setWidth(1280);
@@ -66,5 +65,13 @@ public class App extends Application implements GUIOwner {
     @Override
     public void stop() throws Exception {
         super.stop();
+    }
+
+    public void updateStyle() {
+        style = Settings.darkMode ? "dark-styles.css" : "light-styles.css";
+        root.getStylesheets().clear();
+        root.getStylesheets().add(style);
+        gridPane.getStylesheets().clear();
+        gridPane.getStylesheets().add(style);
     }
 }
