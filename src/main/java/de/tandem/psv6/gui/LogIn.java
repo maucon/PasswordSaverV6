@@ -85,7 +85,7 @@ public class LogIn extends AbstractWindow implements GUIOwner {
                 app.updateStyle();
                 stage.close();
                 new MenuBar(app);
-                for (var e : Database.getInstance().getAllEntries()) app.addNode(Card.createCard(app));
+                for (var e : Database.getInstance().getAllEntries()) app.addNode(Card.createCard(app, e));
                 app.getStage().show();
             }
         });
