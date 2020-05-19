@@ -28,7 +28,7 @@ public class Card {
 
     public static BorderPane addEntryCard(App app) {
         var pane = new BorderPane();
-        pane.setCenter(new Label("+"));
+        pane.setCenter(new Label("+")); //TODO maybe replace with Image
         pane.setId("Card");
         pane.setStyle(app.getStyle());
         pane.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> new CreateEntryDialog(app));
