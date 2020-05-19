@@ -72,6 +72,12 @@
     -fx-prompt-text-fill: -font-color;
 }
 
+#Card {
+    -fx-border-radius: 10%;
+    -fx-border-style: groove;
+    -fx-border-color: red;
+}
+
 * {
     -bg-color: #1c1c1c;
     -button-color: #363636;
