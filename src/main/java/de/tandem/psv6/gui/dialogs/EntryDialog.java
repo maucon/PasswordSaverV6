@@ -49,7 +49,8 @@ public class EntryDialog extends Dialog {
     protected void setCloseEvent() {
         closeEventHandler = windowEvent -> {
             if (!nameField.getText().equals(entry.getLogin()) || !passwordField.getText().equals(entry.getPassword())) {
-                System.out.println("do you wanna save?");
+                windowEvent.consume();
+                new SaveConfirmDialog(owner, stage, entry, nameField.getText(), passwordField.getText());
             }
         };
     }
