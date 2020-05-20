@@ -15,11 +15,9 @@ import javafx.scene.layout.BorderPane;
 
 public class Card {
     public static BorderPane createCard(App app, Entry entry) {
-        var label = new Label(entry.getName());
-        label.setWrapText(true);
         var pane = new BorderPane();
         pane.setPadding(new Insets(10 * app.getHScale()));
-        pane.setCenter(label);
+        pane.setCenter(new Label(entry.getName()));
         pane.setId("Card");
         pane.setStyle(app.getStyle());
         pane.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
