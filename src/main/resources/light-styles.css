@@ -85,6 +85,10 @@
     -fx-background-color: -hover-color;
 }
 
+#Card > .label {
+    -fx-wrap-text: true;
+}
+
 * {
     -bg-color: #ffffff;
     -menu-color: #f2f2f2;
