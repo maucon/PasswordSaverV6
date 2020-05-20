@@ -5,6 +5,7 @@ import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.gui.dialogs.CreateEntryDialog;
 import de.tandem.psv6.gui.dialogs.EntryDialog;
 import de.tandem.psv6.gui.dialogs.RemoveConfirmDialog;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,8 +15,11 @@ import javafx.scene.layout.BorderPane;
 
 public class Card {
     public static BorderPane createCard(App app, Entry entry) {
+        var label = new Label(entry.getName());
+        label.setWrapText(true);
         var pane = new BorderPane();
-        pane.setCenter(new Label(entry.getName()));
+        pane.setPadding(new Insets(10 * app.getHScale()));
+        pane.setCenter(label);
         pane.setId("Card");
         pane.setStyle(app.getStyle());
         pane.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
@@ -29,10 +33,10 @@ public class Card {
     }
 
     public static BorderPane addEntryCard(App app) {
-        var pane = new BorderPane();
         var img = new ImageView(new Image("img/plus sign.png"));
         img.setFitWidth(70 * app.getHScale());
         img.setFitHeight(70 * app.getVScale());
+        var pane = new BorderPane();
         pane.setCenter(img);
         pane.setId("Card");
         pane.setStyle(app.getStyle());
