@@ -74,6 +74,6 @@ public class App extends Application implements GUIOwner {
     }
 
     public void removeEntry(Entry entry) {
-        flowPane.getChildren().remove(Database.getInstance().getAllEntries().indexOf(entry));
+        flowPane.getChildren().remove(Database.getInstance().getAllEntries().indexOf(entry) + 1);
     }
 }
