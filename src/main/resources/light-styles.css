@@ -59,6 +59,7 @@
 
 
 .button, .combo-box, .text-field, .combo-box .list-cell, .combo-box .label, .combo-box .text-field {
+    -fx-font-size: 150%;
     -fx-background-color: -button-color;
     -fx-background: -button-color;
     -fx-text-fill: -font-color;

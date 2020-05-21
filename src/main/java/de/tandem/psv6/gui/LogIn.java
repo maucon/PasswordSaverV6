@@ -16,7 +16,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 import org.identityconnectors.common.security.GuardedString;
 
 
@@ -38,6 +37,7 @@ public class LogIn extends AbstractWindow implements GUIOwner {
         stage.setHeight(700);
         stage.initStyle(StageStyle.UTILITY);
         var scene = new Scene(root);
+        scene.getStylesheets().add(app.getStyle());
         stage.setScene(scene);
 
         vScale.bind(stage.heightProperty().divide(700));
@@ -68,8 +68,8 @@ public class LogIn extends AbstractWindow implements GUIOwner {
         root.setCenter(grid);
 
         var nameInput = addCombo(0, "Name:", Database.getUserList());
+        nameInput.setPrefWidth(230 * getHScale());
         var passwordInput = addField(1, "Password:", true);
-        nameInput.setPrefWidth(150 * getHScale());
 
         // Event Listeners:
         loginButton.setOnAction(event -> {

@@ -46,6 +46,7 @@ public class App extends Application implements GUIOwner {
         BorderPane.setMargin(root.getCenter(), new Insets(20));
 
         var scene = new Scene(root);
+        scene.getStylesheets().add(style);
         root.setPrefWidth(1280);
         root.setPrefHeight(720);
 
