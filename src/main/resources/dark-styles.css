@@ -11,6 +11,7 @@
 }
 
 .menu .label {
+    -fx-font-size: 100%;
     -fx-text-fill: -menu-font-color;
 }
 
@@ -23,6 +24,7 @@
 }
 
 .label, #vBox .label {
+    -fx-font-size: 150%;
     -fx-text-fill: -font-color;
 }
 
