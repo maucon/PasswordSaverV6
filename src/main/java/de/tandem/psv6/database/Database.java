@@ -124,6 +124,7 @@ public class Database {
         try (var bufferedReader = new BufferedReader(new FileReader(userPath + CONFIG_FILE_NAME))) {
             Settings.darkMode = bufferedReader.readLine().equals("true");
         } catch (IOException ignored) {
+            throw new FileModificationException("Couldn't read user settings: " + userPath);
         }
     }
 
@@ -131,6 +132,7 @@ public class Database {
         try (var bufferedWriter = new BufferedWriter(new FileWriter(new File(userPath + CONFIG_FILE_NAME)))) {
             bufferedWriter.write(Settings.darkMode ? "true" : "false");
         } catch (IOException ignored) {
+            throw new FileModificationException("Couldn't save user settings: " + userPath);
         }
     }
 
