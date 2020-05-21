@@ -97,11 +97,15 @@ public class Database {
                 .collect(Collectors.toList());
     }
 
-    public void addEntry(Entry entry) {
+    public Entry addEntry(Entry entry) {
+        var filename = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
         try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(
-                userPath + ENTRY_FOLDER_NAME + new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + ENTRY_FILE_EXTENSION), Security.accessGuardedKey(Security.guardedString)))) {
+                userPath + ENTRY_FOLDER_NAME + filename + ENTRY_FILE_EXTENSION), Security.accessGuardedKey(Security.guardedString)))) {
+            entry.setFileName(filename);
             out.writeObject(entry);
+            return entry;
         } catch (IOException | GeneralSecurityException ignored) {
+            throw new FileModificationException("Couldn't create Entry: " + entry);
         }
     }
 
