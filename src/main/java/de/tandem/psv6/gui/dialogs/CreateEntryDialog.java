@@ -4,7 +4,10 @@ import de.tandem.psv6.App;
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.gui.Card;
+import javafx.event.EventHandler;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class CreateEntryDialog extends Dialog {
     private TextInputControl nameField;
@@ -24,7 +27,8 @@ public class CreateEntryDialog extends Dialog {
         loginField = addField(1, "Login:");
         passwordField = addField(2, "Password:", true);
         descriptionField = addField(3, "Description:");
-        addOkCancelButtons(4).onActionProperty().set(event -> {
+        var okbutton = addOkCancelButtons(4);
+        okbutton.onActionProperty().set(event -> {
             if (!nameField.getText().isBlank() || !loginField.getText().isBlank() || !passwordField.getText().isBlank()) {
                 if (nameField.getText().isBlank() || loginField.getText().isBlank() || passwordField.getText().isBlank()) {
                     new ErrorDialog(owner, stage, "Not all required Fields are filled in.");
@@ -35,5 +39,16 @@ public class CreateEntryDialog extends Dialog {
                 stage.close();
             }
         });
+
+        var handler = new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode().equals(KeyCode.ENTER)) okbutton.fire();
+            }
+        };
+        nameField.addEventHandler(KeyEvent.KEY_PRESSED, handler);
+        loginField.addEventHandler(KeyEvent.KEY_PRESSED, handler);
+        passwordField.addEventHandler(KeyEvent.KEY_PRESSED, handler);
+        descriptionField.addEventHandler(KeyEvent.KEY_PRESSED, handler);
     }
 }
