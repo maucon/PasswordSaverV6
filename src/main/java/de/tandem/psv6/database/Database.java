@@ -98,9 +98,9 @@ public class Database {
     }
 
     public Entry addEntry(Entry entry) {
-        var filename = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+        var filename = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + ENTRY_FILE_EXTENSION;
         try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(
-                userPath + ENTRY_FOLDER_NAME + filename + ENTRY_FILE_EXTENSION), Security.accessGuardedKey(Security.guardedString)))) {
+                userPath + ENTRY_FOLDER_NAME + filename), Security.accessGuardedKey(Security.guardedString)))) {
             entry.setFileName(filename);
             out.writeObject(entry);
             return entry;
