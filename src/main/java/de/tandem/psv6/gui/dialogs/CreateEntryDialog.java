@@ -31,8 +31,7 @@ public class CreateEntryDialog extends Dialog {
                     return;
                 }
                 var entry = new Entry(nameField.getText(), loginField.getText(), passwordField.getText(), descriptionField.getText(), null);
-                Database.getInstance().addEntry(entry);
-                ((App) owner).addNode(Card.createCard(((App) owner), entry));
+                ((App) owner).addNode(Card.createCard(((App) owner), Database.getInstance().addEntry(entry)));
                 stage.close();
             }
         });
