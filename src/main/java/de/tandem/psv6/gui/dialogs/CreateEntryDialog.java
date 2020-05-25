@@ -55,7 +55,7 @@ public class CreateEntryDialog extends Dialog {
                 new ErrorDialog(owner, stage, "Not all required fields are filled in.");
                 return;
             }
-            if (!Entry.isAllowedString(nameField.getText()) || !Entry.isAllowedString(loginField.getText()) || !Entry.isAllowedString(passwordField.getText()) || !Entry.isAllowedString(descriptionField.getText())) {
+            if (Entry.isNotAllowedString(nameField.getText()) || Entry.isNotAllowedString(loginField.getText()) || Entry.isNotAllowedString(passwordField.getText()) || Entry.isNotAllowedString(descriptionField.getText())) {
                 new ErrorDialog(owner, stage, "Fields contains illegal character.");
                 return;
             }

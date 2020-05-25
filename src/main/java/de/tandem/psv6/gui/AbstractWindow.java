@@ -34,15 +34,17 @@ public abstract class AbstractWindow {
         return input;
     }
 
-    protected Button addOkCancelButtons(int gridIndex) {
-        var okButton = new Button("OK");
-        var cancelButton = new Button("Cancel");
-        grid.addRow(gridIndex, okButton, cancelButton);
-        GridPane.setHalignment(okButton, HPos.CENTER);
-        GridPane.setHalignment(cancelButton, HPos.CENTER);
-        cancelButton.setOnAction(event -> stage.close());
-        return okButton;
-    }
+// --Commented out by Inspection START (25.05.2020 16:48):
+//    protected Button addOkCancelButtons(int gridIndex) {
+//        var okButton = new Button("OK");
+//        var cancelButton = new Button("Cancel");
+//        grid.addRow(gridIndex, okButton, cancelButton);
+//        GridPane.setHalignment(okButton, HPos.CENTER);
+//        GridPane.setHalignment(cancelButton, HPos.CENTER);
+//        cancelButton.setOnAction(event -> stage.close());
+//        return okButton;
+//    }
+// --Commented out by Inspection STOP (25.05.2020 16:48)
 
     protected Button addOkCancelButtons(int gridIndex, double width) {
         var okButton = new Button("OK");

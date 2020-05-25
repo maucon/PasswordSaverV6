@@ -49,7 +49,7 @@ public class EntryDialog extends Dialog {
         var okButton = addOkCancelButtons(4, 100);
         okButton.setText("Save");
         okButton.onActionProperty().set(e -> {
-            if (!Entry.isAllowedString(nameField.getText()) || !Entry.isAllowedString(passwordField.getText()) || !Entry.isAllowedString(descriptionField.getText())) {
+            if (Entry.isNotAllowedString(nameField.getText()) || Entry.isNotAllowedString(passwordField.getText()) || Entry.isNotAllowedString(descriptionField.getText())) {
                 new ErrorDialog(owner, stage, "Fields contains illegal character.");
                 return;
             }
