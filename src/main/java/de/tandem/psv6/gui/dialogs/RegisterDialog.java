@@ -2,6 +2,7 @@ package de.tandem.psv6.gui.dialogs;
 
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.User;
+import de.tandem.psv6.exceptions.UserAlreadyExistsException;
 import de.tandem.psv6.gui.GUIOwner;
 import de.tandem.psv6.security.Security;
 import javafx.event.EventHandler;
@@ -37,10 +38,14 @@ public class RegisterDialog extends Dialog {
             else if (password.isBlank()) new ErrorDialog(owner, stage, "Password is blank.");
             else if (!password.equals(password2)) new ErrorDialog(owner, stage, "Passwords don't match.");
             else {
-                Database.setupUser(new User(name, Security.save_hash(name, password)));
-                comboBox.getItems().clear();
-                comboBox.getItems().addAll(Database.getUserList());
-                stage.close();
+                try {
+                    Database.setupUser(new User(name, Security.save_hash(name, password)));
+                    comboBox.getItems().clear();
+                    comboBox.getItems().addAll(Database.getUserList());
+                    stage.close();
+                } catch (UserAlreadyExistsException e) {
+                    new ErrorDialog(owner, stage, "Username already exists.");
+                }
             }
         });
         var event = new EventHandler<KeyEvent>() {
