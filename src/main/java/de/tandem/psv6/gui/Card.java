@@ -2,6 +2,7 @@ package de.tandem.psv6.gui;
 
 import de.tandem.psv6.App;
 import de.tandem.psv6.entity.Entry;
+import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.dialogs.CreateEntryDialog;
 import de.tandem.psv6.gui.dialogs.EntryDialog;
 import de.tandem.psv6.gui.dialogs.RemoveConfirmDialog;
@@ -46,7 +47,7 @@ public class Card {
     }
 
     public static BorderPane addEntryCard(App app) {
-        var img = new ImageView(new Image("img/plus sign.png"));
+        var img = new ImageView(new Image("img/plus sign " + (Settings.darkMode ? "dark" : "light") + ".png"));
         img.setFitWidth(70 * app.getHScale());
         img.setFitHeight(70 * app.getVScale());
         var pane = new BorderPane();
