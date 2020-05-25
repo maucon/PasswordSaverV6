@@ -10,6 +10,9 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class CreateEntryDialog extends Dialog {
+
+    private static final int MAX_NAME_LENGTH = 20;
+
     private TextInputControl nameField;
     private TextInputControl loginField;
     private TextInputControl passwordField;
@@ -24,6 +27,12 @@ public class CreateEntryDialog extends Dialog {
         grid.setVgap(15 * owner.getVScale());
         grid.setHgap(5 * owner.getHScale());
         nameField = addField(0, "Name:");
+        nameField.textProperty().addListener((ov, oldValue, newValue) -> {
+            if (nameField.getText().length() > MAX_NAME_LENGTH) {
+                String s = nameField.getText().substring(0, MAX_NAME_LENGTH);
+                nameField.setText(s);
+            }
+        });
         loginField = addField(1, "Login:");
         passwordField = addField(2, "Password:", true);
         descriptionField = addField(3, "Description:");
