@@ -14,7 +14,7 @@ public class RegisterDialog extends Dialog {
     private final ComboBox<String> comboBox;
 
     public RegisterDialog(GUIOwner owner, ComboBox<String> comboBox) {
-        super(owner, "Register", 500, 400);
+        super(owner, "Register", 400, 300);
         this.comboBox = comboBox;
     }
 
@@ -26,7 +26,7 @@ public class RegisterDialog extends Dialog {
         // Input Fields:
         var nameInput = addField(0, "Name:");
         var passwordInput = addField(1, "Password:", true);
-        var password2Input = addField(2, "Retype Password:", true);
+        var password2Input = addField(2, "Confirm:", true);
         var okButton = addOkCancelButtons(3);
 
         okButton.setOnAction(event -> {
