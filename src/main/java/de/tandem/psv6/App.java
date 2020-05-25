@@ -6,9 +6,13 @@ import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.GUIOwner;
 import de.tandem.psv6.gui.LogIn;
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.geometry.Bounds;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -42,8 +46,21 @@ public class App extends Application implements GUIOwner {
         flowPane.getStylesheets().add(style);
         flowPane.hgapProperty().bind(hScale.multiply(20));
         flowPane.vgapProperty().bind(vScale.multiply(20));
-        root.setCenter(flowPane);
-        BorderPane.setMargin(root.getCenter(), new Insets(20));
+        flowPane.setPadding(new Insets(20));
+
+        var scroll = new ScrollPane();
+        scroll.setId("gridPane");
+        scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);    // Horizontal scroll bar
+        scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);    // Vertical scroll bar
+        scroll.setContent(flowPane);
+        scroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
+            @Override
+            public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds) {
+                flowPane.setPrefWidth(bounds.getWidth());
+                flowPane.setPrefHeight(bounds.getHeight());
+            }
+        });
+        root.setCenter(scroll);
 
         var scene = new Scene(root);
         scene.getStylesheets().add(style);
