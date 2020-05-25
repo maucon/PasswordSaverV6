@@ -48,7 +48,7 @@ public class CreateEntryDialog extends Dialog {
         generatePassword.onActionProperty().set(e -> passwordField.setText(PasswordGenerator.create()));
 
         descriptionField = addField(3, "Description:");
-        var okbutton = addOkCancelButtons(4);
+        var okbutton = addOkCancelButtons(4, 100);
         okbutton.onActionProperty().set(event -> {
             if (!nameField.getText().isBlank() || !loginField.getText().isBlank() || !passwordField.getText().isBlank()) {
                 if (nameField.getText().isBlank() || loginField.getText().isBlank() || passwordField.getText().isBlank()) {
