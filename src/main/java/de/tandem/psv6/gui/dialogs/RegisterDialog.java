@@ -35,6 +35,7 @@ public class RegisterDialog extends Dialog {
             var password2 = password2Input.getText();
 
             if (name.isBlank()) new ErrorDialog(owner, stage, "Name is blank.");
+            else if (!User.isAllowedUsername(name)) new ErrorDialog(owner, stage, "Name contains illegal characters.");
             else if (password.isBlank()) new ErrorDialog(owner, stage, "Password is blank.");
             else if (!password.equals(password2)) new ErrorDialog(owner, stage, "Passwords don't match.");
             else {
