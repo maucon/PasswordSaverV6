@@ -16,11 +16,8 @@ public class ErrorDialog extends Dialog {
     public ErrorDialog(GUIOwner owner, Stage ownerStage, String errorMessage) {
         super(owner, ownerStage, "Error", errorMessage.length() * 13, 200);
         grid.addRow(0, new Label(errorMessage));
-        stage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().equals(KeyCode.ENTER)) stage.close();
-            }
+        stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ENTER)) stage.close();
         });
     }
 

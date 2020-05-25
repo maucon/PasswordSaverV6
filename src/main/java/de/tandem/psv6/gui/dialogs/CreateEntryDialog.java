@@ -51,15 +51,13 @@ public class CreateEntryDialog extends Dialog {
         descriptionField = addField(3, "Description:");
         var okbutton = addOkCancelButtons(4, 100);
         okbutton.onActionProperty().set(event -> {
-            if (!nameField.getText().isBlank() || !loginField.getText().isBlank() || !passwordField.getText().isBlank()) {
-                if (nameField.getText().isBlank() || loginField.getText().isBlank() || passwordField.getText().isBlank()) {
-                    new ErrorDialog(owner, stage, "Not all required Fields are filled in.");
-                    return;
-                }
-                var entry = new Entry(nameField.getText(), loginField.getText(), passwordField.getText(), descriptionField.getText(), null);
-                ((App) owner).addNode(Card.createCard(((App) owner), Database.getInstance().addEntry(entry)));
-                stage.close();
+            if (nameField.getText().isBlank() || loginField.getText().isBlank() || passwordField.getText().isBlank()) {
+                new ErrorDialog(owner, stage, "Not all required fields are filled in.");
+                return;
             }
+            var entry = new Entry(nameField.getText(), loginField.getText(), passwordField.getText(), descriptionField.getText(), null);
+            ((App) owner).addNode(Card.createCard(((App) owner), Database.getInstance().addEntry(entry)));
+            stage.close();
         });
 
         var handler = new EventHandler<KeyEvent>() {
