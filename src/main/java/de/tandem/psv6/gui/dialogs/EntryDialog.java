@@ -1,5 +1,6 @@
 package de.tandem.psv6.gui.dialogs;
 
+import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.scene.control.Button;
@@ -36,6 +37,16 @@ public class EntryDialog extends Dialog {
         grid.add(copyPasswordButton, 2, 1);
 
         descriptionField = addField(2, "Description:");
+
+        var okButton = addOkCancelButtons(3);
+        okButton.setText("Save");
+        okButton.onActionProperty().set(e -> {
+            entry.setLogin(nameField.getText());
+            entry.setPassword(passwordField.getText());
+            entry.setDescription(descriptionField.getText());
+            Database.getInstance().editEntry(entry);
+            stage.close();
+        });
 
         copyNameButton.onActionProperty().set(e -> {
             var clipboard = new ClipboardContent();
