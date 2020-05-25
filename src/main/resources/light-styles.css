@@ -23,7 +23,7 @@
     -fx-background-color: -bg-color;
 }
 
-.label {
+.label, #vBox .label {
     -fx-font-size: 150%;
     -fx-text-fill: -font-color;
 }
@@ -36,7 +36,6 @@
 #gridPane, #vBox {
     -fx-font-size: 150%;
 }
-
 
 .scroll-pane, .scroll-pane > .viewport, .scroll-bar:vertical {
     -fx-background-color: transparent;
@@ -62,7 +61,6 @@
     -fx-background-color: -hover-color;
 }
 
-
 #vBox {
     -fx-border-style: hidden none none solid;
     -fx-border-color: -border-color-dark;
@@ -77,7 +75,7 @@
 }
 
 .grid-cell {
-    -fx-background-color: -border-color, -bg-color;
+    -fx-background-color: -border-color-light, -bg-color;
     -fx-background-insets: 0, 1 0 1 1;
 }
 
@@ -102,8 +100,6 @@
 }
 
 #Card {
-    /*-fx-border-radius: 10%;*/
-    /*-fx-border-color: -menu-color;*/
     -fx-background-color: -bg-color;
     -fx-background-radius: 10%;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
@@ -123,6 +119,7 @@
 
 * {
     -bg-color: #ffffff;
+    -button-color: #eeeeee;
     -menu-color: #f2f2f2;
     -menu-font-color: #000000;
     -border-color: #bcbcbc;
