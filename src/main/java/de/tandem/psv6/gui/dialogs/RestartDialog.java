@@ -16,7 +16,7 @@ public class RestartDialog extends Dialog {
         addLabel(0, "You need to Restart for the Settings to apply.");
         addLabel(1, "Do you want to restart now?");
 
-        addOkCancelButtons(2, true, 70).setOnAction(event -> {
+        addOkCancelButtons(2, 70).setOnAction(event -> {
             stage.close();
             owner.getStage().close();
             Platform.runLater(() -> {

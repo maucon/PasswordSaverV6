@@ -38,7 +38,7 @@ public class EntryDialog extends Dialog {
 
         descriptionField = addField(3, "Description:");
 
-        var okButton = addOkCancelButtons(4);
+        var okButton = addOkCancelButtons(4, 100);
         okButton.setText("Save");
         okButton.onActionProperty().set(e -> {
             entry.setLogin(nameField.getText());

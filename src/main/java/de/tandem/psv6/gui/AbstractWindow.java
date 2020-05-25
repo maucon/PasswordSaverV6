@@ -42,8 +42,7 @@ public abstract class AbstractWindow {
         return okButton;
     }
 
-    protected Button addOkCancelButtons(int gridIndex, boolean hBox, double width) {
-        if (!hBox) return addOkCancelButtons(gridIndex);
+    protected Button addOkCancelButtons(int gridIndex, double width) {
         var okButton = new Button("OK");
         var cancelButton = new Button("Cancel");
         var subGrid = new GridPane();
@@ -54,7 +53,7 @@ public abstract class AbstractWindow {
         subGrid.hgapProperty().set(width * owner.getHScale());
         GridPane.setHalignment(okButton, HPos.CENTER);
         GridPane.setHalignment(cancelButton, HPos.CENTER);
-        grid.addRow(gridIndex, subGrid);
+        grid.add(subGrid, 0, gridIndex, grid.getColumnCount(), 1);
         GridPane.setHalignment(subGrid, HPos.CENTER);
         cancelButton.setOnAction(event -> stage.close());
         return okButton;
