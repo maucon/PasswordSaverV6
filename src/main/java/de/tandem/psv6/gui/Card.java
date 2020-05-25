@@ -6,6 +6,8 @@ import de.tandem.psv6.gui.dialogs.CreateEntryDialog;
 import de.tandem.psv6.gui.dialogs.EntryDialog;
 import de.tandem.psv6.gui.dialogs.RemoveConfirmDialog;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +19,17 @@ public class Card {
     public static BorderPane createCard(App app, Entry entry) {
         var pane = new BorderPane();
         pane.setPadding(new Insets(10 * app.getHScale()));
-        pane.setCenter(new Label(entry.getName()));
+
+        var remove = new Button("-");
+        remove.onActionProperty().set(e -> {
+            new RemoveConfirmDialog(app, entry);
+        });
+        pane.setTop(remove);
+        BorderPane.setAlignment(remove, Pos.TOP_RIGHT);
+
+        var name = new Label(entry.getName());
+        pane.setCenter(name);
+        BorderPane.setMargin(name, new Insets(0, 0, 20, 0));
         pane.setId("Card");
         pane.setStyle(app.getStyle());
         pane.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {

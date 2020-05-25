@@ -1,15 +1,12 @@
 package de.tandem.psv6.gui.dialogs;
 
-import de.tandem.psv6.App;
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.gui.GUIOwner;
-import javafx.geometry.HPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.layout.GridPane;
 
 public class EntryDialog extends Dialog {
     private final Entry entry;
@@ -31,14 +28,6 @@ public class EntryDialog extends Dialog {
         grid.setVgap(10 * owner.getVScale());
 
         // Input Fields:
-        var remove = new Button("-");
-        remove.onActionProperty().set(e -> {
-            new RemoveConfirmDialog((App) owner, entry);
-            stage.close();
-        });
-        grid.add(remove, 2, 0);
-        GridPane.setHalignment(remove, HPos.RIGHT);
-
         nameField = addField(1, "Name:");
         var copyNameButton = new Button("Copy");
         grid.add(copyNameButton, 2, 1);
