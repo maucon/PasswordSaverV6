@@ -13,31 +13,28 @@ public class PasswordGenerator {
     private static final char[] NUMBERS = "1234567890".toCharArray();
     private static final char[] SYMBOLS = "^!\"$%&/()=?`+*#'-_.:,;<>|~\\@[]{}".toCharArray();
 
-    public static String create() {
-        return create(Settings.passwordLength, Settings.useUppercaseLetters, Settings.useNumbers, Settings.useSymbols);
-    }
 
-    public static String create(int length, boolean useUppercaseLetter, boolean useNumbers, boolean useSymbols) {
+    public static String create() {
         int array_length = LOWERCASE_LETTERS.length;
-        if (useUppercaseLetter) array_length += UPPERCASE_LETTERS.length;
-        if (useNumbers) array_length += NUMBERS.length;
-        if (useSymbols) array_length += SYMBOLS.length;
+        if (Settings.useUppercaseLetters) array_length += UPPERCASE_LETTERS.length;
+        if (Settings.useNumbers) array_length += NUMBERS.length;
+        if (Settings.useSymbols) array_length += SYMBOLS.length;
 
         var character = new char[array_length];
         var index = 0;
 
         for (char c : LOWERCASE_LETTERS)
             character[index++] = c;
-        if (useUppercaseLetter) for (char c : UPPERCASE_LETTERS)
+        if (Settings.useUppercaseLetters) for (char c : UPPERCASE_LETTERS)
             character[index++] = c;
-        if (useNumbers) for (char c : NUMBERS)
+        if (Settings.useNumbers) for (char c : NUMBERS)
             character[index++] = c;
-        if (useSymbols) for (char c : SYMBOLS)
+        if (Settings.useSymbols) for (char c : SYMBOLS)
             character[index++] = c;
 
         var random = new SecureRandom();
         var stringBuilder = new StringBuilder();
-        for (var i = 0; i < length; i++)
+        for (var i = 0; i < Settings.passwordLength; i++)
             stringBuilder.append(character[(int) (random.nextFloat() * character.length)]);
         return stringBuilder.toString();
     }
