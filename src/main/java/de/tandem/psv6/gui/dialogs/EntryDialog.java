@@ -33,20 +33,14 @@ public class EntryDialog extends Dialog {
         // Input Fields:
         nameField = addField(1, "Name:");
 
-        var copyNameButton = new Button();
-        var plusImg = new ImageView(new Image("img/copy-solid " + (Settings.darkMode ? "dark" : "light") + ".png"));
-        plusImg.setFitWidth(20 * owner.getHScale());
-        plusImg.setFitHeight(20 * owner.getVScale());
-        copyNameButton.setGraphic(plusImg);
+        Button copyNameButton = new Button();
+        createCopyButton(copyNameButton);
         grid.add(copyNameButton, 2, 1);
 
         passwordField = addField(2, "Password:", true);
 
-        var copyPasswordButton = new Button();
-        var pepe = new ImageView(new Image("img/copy-solid " + (Settings.darkMode ? "dark" : "light") + ".png"));
-        pepe.setFitWidth(20 * owner.getHScale());
-        pepe.setFitHeight(20 * owner.getVScale());
-        copyPasswordButton.setGraphic(pepe);
+        Button copyPasswordButton = new Button();
+        createCopyButton(copyPasswordButton);
         grid.add(copyPasswordButton, 2, 2);
 
         descriptionField = addField(3, "Description:");
@@ -54,6 +48,10 @@ public class EntryDialog extends Dialog {
         var okButton = addOkCancelButtons(4, 100);
         okButton.setText("Save");
         okButton.onActionProperty().set(e -> {
+            if (!Entry.isAllowedString(nameField.getText()) || !Entry.isAllowedString(passwordField.getText()) || !Entry.isAllowedString(descriptionField.getText())) {
+                new ErrorDialog(owner, stage, "Fields contain illegal character.");
+                return;
+            }
             entry.setLogin(nameField.getText());
             entry.setPassword(passwordField.getText());
             entry.setDescription(descriptionField.getText());
@@ -71,6 +69,13 @@ public class EntryDialog extends Dialog {
             clipboard.putString(passwordField.getText());
             Clipboard.getSystemClipboard().setContent(clipboard);
         });
+    }
+
+    private void createCopyButton(Button button) {
+        var pepe = new ImageView(new Image("img/copy-solid " + (Settings.darkMode ? "dark" : "light") + ".png"));
+        pepe.setFitWidth(20 * owner.getHScale());
+        pepe.setFitHeight(20 * owner.getVScale());
+        button.setGraphic(pepe);
     }
 
     @Override
