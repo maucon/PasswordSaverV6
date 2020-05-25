@@ -45,7 +45,7 @@ public class CreateEntryDialog extends Dialog {
         plusImg.setFitHeight(20 * owner.getVScale());
         generatePassword.setGraphic(plusImg);
         grid.add(generatePassword, 3, 2);
-        generatePassword.onActionProperty().set(e -> passwordField.setText(PasswordGenerator.create(1, true, true, true)));
+        generatePassword.onActionProperty().set(e -> passwordField.setText(PasswordGenerator.create()));
 
         descriptionField = addField(3, "Description:");
         var okbutton = addOkCancelButtons(4);

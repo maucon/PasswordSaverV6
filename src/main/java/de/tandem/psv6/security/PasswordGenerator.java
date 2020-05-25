@@ -1,5 +1,7 @@
 package de.tandem.psv6.security;
 
+import de.tandem.psv6.entity.Settings;
+
 import java.security.SecureRandom;
 
 public class PasswordGenerator {
@@ -10,6 +12,10 @@ public class PasswordGenerator {
     private static final char[] UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
     private static final char[] NUMBERS = "1234567890".toCharArray();
     private static final char[] SYMBOLS = "^!\"$%&/()=?`+*#'-_.:,;<>|~\\@[]{} ".toCharArray();
+
+    public static String create() {
+        return create(Settings.passwordLength, Settings.useUppercaseLetters, Settings.useNumbers, Settings.useSymbols);
+    }
 
     public static String create(int length, boolean useUppercaseLetter, boolean useNumbers, boolean useSymbols) {
         int array_length = LOWERCASE_LETTERS.length;
