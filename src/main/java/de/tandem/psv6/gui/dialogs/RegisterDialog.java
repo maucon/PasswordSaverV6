@@ -11,6 +11,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 public class RegisterDialog extends Dialog {
+
     private final ComboBox<String> comboBox;
 
     public RegisterDialog(GUIOwner owner, ComboBox<String> comboBox) {
@@ -59,4 +60,5 @@ public class RegisterDialog extends Dialog {
         passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event);
         password2Input.addEventHandler(KeyEvent.KEY_PRESSED, event);
     }
+
 }

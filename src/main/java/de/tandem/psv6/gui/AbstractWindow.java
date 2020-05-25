@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import java.util.List;
 
 public abstract class AbstractWindow {
+
     protected GridPane grid;
     protected Stage stage;
     protected GUIOwner owner;
@@ -25,11 +26,11 @@ public abstract class AbstractWindow {
         return input;
     }
 
-    protected ComboBox<String> addCombo(int gridIndex, String labelText, List<String> items) {
-        var label = new Label(labelText);
+    protected ComboBox<String> addCombo(List<String> items) {
+        var label = new Label("Name:");
         var input = new ComboBox<String>();
         input.getItems().addAll(items);
-        grid.addRow(gridIndex, label, input);
+        grid.addRow(0, label, input);
         return input;
     }
 
@@ -67,4 +68,5 @@ public abstract class AbstractWindow {
         grid.addRow(gridIndex, label);
 
     }
+
 }

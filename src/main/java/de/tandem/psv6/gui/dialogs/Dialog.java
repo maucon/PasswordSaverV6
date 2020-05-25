@@ -13,13 +13,10 @@ import javafx.stage.WindowEvent;
 
 
 public abstract class Dialog extends AbstractWindow {
+
     protected EventHandler<WindowEvent> closeEventHandler;
 
     public Dialog(GUIOwner owner, String title, double width, double height) {
-        this(owner, owner.getStage(), title, width, height);
-    }
-
-    public Dialog(GUIOwner owner, String title, double width, double height, Object trash) {
         this(owner, owner.getStage(), title, width, height);
     }
 
@@ -53,4 +50,5 @@ public abstract class Dialog extends AbstractWindow {
         closeEventHandler = windowEvent -> {
         };
     }
+
 }

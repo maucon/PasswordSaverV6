@@ -12,9 +12,13 @@ public interface GUIOwner {
     default double getHScale() {
         return hScale.doubleValue();
     }
+
     default double getVScale() {
         return vScale.doubleValue();
     }
+
     Stage getStage();
+
     String getStyle();
+
 }

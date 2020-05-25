@@ -12,6 +12,7 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 
 public class EntryDialog extends Dialog {
+
     private final Entry entry;
     private TextInputControl nameField;
     private TextInputControl passwordField;
@@ -87,4 +88,5 @@ public class EntryDialog extends Dialog {
             }
         };
     }
+
 }

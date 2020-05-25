@@ -75,4 +75,5 @@ public class CreateEntryDialog extends Dialog {
         passwordField.addEventHandler(KeyEvent.KEY_PRESSED, handler);
         descriptionField.addEventHandler(KeyEvent.KEY_PRESSED, handler);
     }
+
 }
