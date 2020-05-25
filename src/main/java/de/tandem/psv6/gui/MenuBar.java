@@ -3,6 +3,7 @@ package de.tandem.psv6.gui;
 import de.tandem.psv6.App;
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Settings;
+import de.tandem.psv6.gui.dialogs.CreateEntryDialog;
 import de.tandem.psv6.gui.dialogs.RestartDialog;
 import javafx.scene.control.*;
 
@@ -65,6 +66,7 @@ public class MenuBar {
             new RestartDialog(app);
         });
         items[0][1].setOnAction(event -> app.getStage().close());
+        items[0][0].setOnAction(e -> new CreateEntryDialog(app));
     }
 
 }
