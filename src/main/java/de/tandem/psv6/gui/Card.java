@@ -60,4 +60,5 @@ public class Card {
         pane.setPrefHeight(150 * app.getVScale());
         return pane;
     }
+
 }

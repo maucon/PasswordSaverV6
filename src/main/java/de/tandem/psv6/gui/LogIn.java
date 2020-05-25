@@ -69,7 +69,7 @@ public class LogIn extends AbstractWindow implements GUIOwner {
         grid.setVgap(10 * getVScale());
         root.setCenter(grid);
 
-        var nameInput = addCombo(0, "Name:", Database.getUserList());
+        var nameInput = addCombo(Database.getUserList());
         nameInput.setPrefWidth(230 * getHScale());
         var passwordInput = addField(1, "Password:", true);
 
@@ -111,4 +111,5 @@ public class LogIn extends AbstractWindow implements GUIOwner {
     public String getStyle() {
         return app.getStyle();
     }
+
 }

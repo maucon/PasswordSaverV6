@@ -17,6 +17,7 @@ import lombok.Getter;
 
 @Getter
 public class App extends Application implements GUIOwner {
+
     public static final long VERSION = 14L;
     private Stage stage;
     private String style;
@@ -88,4 +89,5 @@ public class App extends Application implements GUIOwner {
     public void removeEntry(Entry entry) {
         flowPane.getChildren().remove(Database.getInstance().getAllEntries().indexOf(entry) + 1);
     }
+
 }

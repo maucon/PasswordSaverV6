@@ -1,7 +1,6 @@
 package de.tandem.psv6.gui.dialogs;
 
 import de.tandem.psv6.gui.GUIOwner;
-import javafx.event.EventHandler;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;

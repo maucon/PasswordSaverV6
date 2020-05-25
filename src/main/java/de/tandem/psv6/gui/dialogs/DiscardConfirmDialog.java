@@ -14,4 +14,5 @@ public class DiscardConfirmDialog extends Dialog {
             ownerStage.close();
         });
     }
+
 }
