@@ -53,12 +53,9 @@ public class App extends Application implements GUIOwner {
         scroll.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);    // Horizontal scroll bar
         scroll.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);    // Vertical scroll bar
         scroll.setContent(flowPane);
-        scroll.viewportBoundsProperty().addListener(new ChangeListener<Bounds>() {
-            @Override
-            public void changed(ObservableValue<? extends Bounds> ov, Bounds oldBounds, Bounds bounds) {
-                flowPane.setPrefWidth(bounds.getWidth());
-                flowPane.setPrefHeight(bounds.getHeight());
-            }
+        scroll.viewportBoundsProperty().addListener((ov, oldBounds, bounds) -> {
+            flowPane.setPrefWidth(bounds.getWidth());
+            flowPane.setPrefHeight(bounds.getHeight());
         });
         root.setCenter(scroll);
 
