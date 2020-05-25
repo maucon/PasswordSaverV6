@@ -53,7 +53,7 @@ public class CreateEntryDialog extends Dialog {
         okbutton.onActionProperty().set(event -> {
             if (!nameField.getText().isBlank() || !loginField.getText().isBlank() || !passwordField.getText().isBlank()) {
                 if (nameField.getText().isBlank() || loginField.getText().isBlank() || passwordField.getText().isBlank()) {
-                    new ErrorDialog(owner, stage, "Not all required Fields are filled in.");
+                    new ErrorDialog(owner, stage, "Not all required fields are filled in.");
                     return;
                 }
                 var entry = new Entry(nameField.getText(), loginField.getText(), passwordField.getText(), descriptionField.getText(), null);
