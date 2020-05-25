@@ -17,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 public class Card {
+
     public static BorderPane createCard(App app, Entry entry) {
         var pane = new BorderPane();
         pane.setPadding(new Insets(10 * app.getHScale()));
@@ -41,8 +42,8 @@ public class Card {
             if (e.getButton() == MouseButton.SECONDARY) new RemoveConfirmDialog(app, entry);
         });
 
-        pane.setPrefWidth(200 * app.getHScale());
-        pane.setPrefHeight(200 * app.getVScale());
+        pane.setPrefWidth(150 * app.getHScale());
+        pane.setPrefHeight(150 * app.getVScale());
         return pane;
     }
 
@@ -55,8 +56,8 @@ public class Card {
         pane.setId("Card");
         pane.setStyle(app.getStyle());
         pane.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> new CreateEntryDialog(app));
-        pane.setPrefWidth(200 * app.getHScale());
-        pane.setPrefHeight(200 * app.getVScale());
+        pane.setPrefWidth(150 * app.getHScale());
+        pane.setPrefHeight(150 * app.getVScale());
         return pane;
     }
 }
