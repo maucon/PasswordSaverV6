@@ -1,6 +1,7 @@
 package de.tandem.psv6.gui;
 
 import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -54,6 +55,7 @@ public abstract class AbstractWindow {
         GridPane.setHalignment(okButton, HPos.CENTER);
         GridPane.setHalignment(cancelButton, HPos.CENTER);
         grid.add(subGrid, 0, gridIndex, grid.getColumnCount(), 1);
+        GridPane.setMargin(subGrid, new Insets(15, 0, 0, 0));
         GridPane.setHalignment(subGrid, HPos.CENTER);
         cancelButton.setOnAction(event -> stage.close());
         return okButton;
