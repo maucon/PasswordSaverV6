@@ -56,7 +56,7 @@ public class CreateEntryDialog extends Dialog {
                 return;
             }
             if (!Entry.isAllowedString(nameField.getText()) || !Entry.isAllowedString(loginField.getText()) || !Entry.isAllowedString(passwordField.getText()) || !Entry.isAllowedString(descriptionField.getText())) {
-                new ErrorDialog(owner, stage, "Fields contain illegal character.");
+                new ErrorDialog(owner, stage, "Fields contains illegal character.");
                 return;
             }
             var entry = new Entry(nameField.getText(), loginField.getText(), passwordField.getText(), descriptionField.getText(), null);

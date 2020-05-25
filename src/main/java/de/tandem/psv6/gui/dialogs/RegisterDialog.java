@@ -46,7 +46,7 @@ public class RegisterDialog extends Dialog {
                     comboBox.getItems().addAll(Database.getUserList());
                     stage.close();
                 } catch (UserAlreadyExistsException e) {
-                    new ErrorDialog(owner, stage, "Username already exists.");
+                    new ErrorDialog(owner, stage, "User already exists.");
                 }
             }
         });
