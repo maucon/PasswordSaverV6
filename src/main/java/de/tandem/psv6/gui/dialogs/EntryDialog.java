@@ -49,6 +49,10 @@ public class EntryDialog extends Dialog {
         var okButton = addOkCancelButtons(4, 100);
         okButton.setText("Save");
         okButton.onActionProperty().set(e -> {
+            if (nameField.getText().isBlank() || passwordField.getText().isBlank()) {
+                new ErrorDialog(owner, stage, "Not all required fields are filled in.");
+                return;
+            }
             if (Entry.isNotAllowedString(nameField.getText()) || Entry.isNotAllowedString(passwordField.getText()) || Entry.isNotAllowedString(descriptionField.getText())) {
                 new ErrorDialog(owner, stage, "Fields contains illegal character.");
                 return;
