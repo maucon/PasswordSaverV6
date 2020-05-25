@@ -37,6 +37,10 @@
     -fx-font-size: 150%;
 }
 
+.scroll-pane, .scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
 #vBox {
     -fx-border-style: hidden none none solid;
     -fx-border-color: -border-color-dark;
