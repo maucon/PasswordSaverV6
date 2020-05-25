@@ -5,6 +5,8 @@ import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 
@@ -29,11 +31,21 @@ public class EntryDialog extends Dialog {
 
         // Input Fields:
         nameField = addField(1, "Name:");
-        var copyNameButton = new Button("Copy");
+
+        var copyNameButton = new Button();
+        var plusImg = new ImageView(new Image("img/copy-solid.png"));
+        plusImg.setFitWidth(20 * owner.getHScale());
+        plusImg.setFitHeight(20 * owner.getVScale());
+        copyNameButton.setGraphic(plusImg);
         grid.add(copyNameButton, 2, 1);
 
         passwordField = addField(2, "Password:", true);
-        var copyPasswordButton = new Button("Copy");
+
+        var copyPasswordButton = new Button();
+        var pepe = new ImageView(new Image("img/copy-solid.png"));
+        pepe.setFitWidth(20 * owner.getHScale());
+        pepe.setFitHeight(20 * owner.getVScale());
+        copyPasswordButton.setGraphic(pepe);
         grid.add(copyPasswordButton, 2, 2);
 
         descriptionField = addField(3, "Description:");
