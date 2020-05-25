@@ -15,7 +15,7 @@ public class EntryDialog extends Dialog {
     private TextInputControl descriptionField;
 
     public EntryDialog(GUIOwner owner, Entry entry) {
-        super(owner, entry.getName(), 500, 400);
+        super(owner, entry.getName(), 500, 300);
         this.entry = entry;
         nameField.setText(entry.getLogin());
         passwordField.setText(entry.getPassword());
