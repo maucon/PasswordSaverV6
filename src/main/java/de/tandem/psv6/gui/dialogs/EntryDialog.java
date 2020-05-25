@@ -2,6 +2,7 @@ package de.tandem.psv6.gui.dialogs;
 
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Entry;
+import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
@@ -33,7 +34,7 @@ public class EntryDialog extends Dialog {
         nameField = addField(1, "Name:");
 
         var copyNameButton = new Button();
-        var plusImg = new ImageView(new Image("img/copy-solid.png"));
+        var plusImg = new ImageView(new Image("img/copy-solid " + (Settings.darkMode ? "dark" : "light") + ".png"));
         plusImg.setFitWidth(20 * owner.getHScale());
         plusImg.setFitHeight(20 * owner.getVScale());
         copyNameButton.setGraphic(plusImg);
@@ -42,7 +43,7 @@ public class EntryDialog extends Dialog {
         passwordField = addField(2, "Password:", true);
 
         var copyPasswordButton = new Button();
-        var pepe = new ImageView(new Image("img/copy-solid.png"));
+        var pepe = new ImageView(new Image("img/copy-solid " + (Settings.darkMode ? "dark" : "light") + ".png"));
         pepe.setFitWidth(20 * owner.getHScale());
         pepe.setFitHeight(20 * owner.getVScale());
         copyPasswordButton.setGraphic(pepe);

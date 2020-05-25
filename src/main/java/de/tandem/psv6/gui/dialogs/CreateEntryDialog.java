@@ -3,6 +3,7 @@ package de.tandem.psv6.gui.dialogs;
 import de.tandem.psv6.App;
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Entry;
+import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.Card;
 import de.tandem.psv6.security.PasswordGenerator;
 import javafx.event.EventHandler;
@@ -40,7 +41,7 @@ public class CreateEntryDialog extends Dialog {
         loginField = addField(1, "Login:");
         passwordField = addField(2, "Password:");
         var generatePassword = new Button();
-        var plusImg = new ImageView(new Image("img/Generate Password small.png"));
+        var plusImg = new ImageView(new Image("img/Generate Password small " + (Settings.darkMode ? "dark" : "light") + ".png"));
         plusImg.setFitWidth(20 * owner.getHScale());
         plusImg.setFitHeight(20 * owner.getVScale());
         generatePassword.setGraphic(plusImg);
