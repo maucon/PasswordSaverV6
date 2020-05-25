@@ -123,6 +123,10 @@ public class Database {
     public void loadUserSettings() {
         try (var bufferedReader = new BufferedReader(new FileReader(userPath + CONFIG_FILE_NAME))) {
             Settings.darkMode = bufferedReader.readLine().equals("true");
+            Settings.passwordLength = Integer.parseInt(bufferedReader.readLine());
+            Settings.useUppercaseLetters = bufferedReader.readLine().equals("true");
+            Settings.useNumbers = bufferedReader.readLine().equals("true");
+            Settings.useSymbols = bufferedReader.readLine().equals("true");
         } catch (IOException ignored) {
             throw new FileModificationException("Couldn't read user settings: " + userPath);
         }
@@ -131,6 +135,14 @@ public class Database {
     public void saveUserSettings() {
         try (var bufferedWriter = new BufferedWriter(new FileWriter(new File(userPath + CONFIG_FILE_NAME)))) {
             bufferedWriter.write(Settings.darkMode ? "true" : "false");
+            bufferedWriter.newLine();
+            bufferedWriter.write("" + Settings.passwordLength);
+            bufferedWriter.newLine();
+            bufferedWriter.write(Settings.useUppercaseLetters ? "true" : "false");
+            bufferedWriter.newLine();
+            bufferedWriter.write(Settings.useNumbers ? "true" : "false");
+            bufferedWriter.newLine();
+            bufferedWriter.write(Settings.useSymbols ? "true" : "false");
         } catch (IOException ignored) {
             throw new FileModificationException("Couldn't save user settings: " + userPath);
         }
