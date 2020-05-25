@@ -13,7 +13,7 @@ public class SaveConfirmDialog extends Dialog {
     public SaveConfirmDialog(GUIOwner owner, Stage ownerStage, Entry entry, String newLogin, String newPassword, String newDescription) {
         super(owner, ownerStage, "Confirm Changes", 400, 200);
         grid.addRow(0, new Label("You have some unsaved changes. Save now?"));
-        addOkCancelButtons(1, true, 100).onActionProperty().set(event -> {
+        addOkCancelButtons(1, 100).onActionProperty().set(event -> {
             entry.setLogin(newLogin);
             entry.setPassword(newPassword);
             entry.setDescription(newDescription);
