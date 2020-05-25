@@ -23,7 +23,7 @@ public class CreateEntryDialog extends Dialog {
     private TextInputControl descriptionField;
 
     public CreateEntryDialog(App app) {
-        super(app, "Create new", 450, 300);
+        super(app, "Create new", 450, 320);
     }
 
     @Override
