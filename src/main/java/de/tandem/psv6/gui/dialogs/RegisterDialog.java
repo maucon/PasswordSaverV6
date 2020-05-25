@@ -27,7 +27,7 @@ public class RegisterDialog extends Dialog {
         var nameInput = addField(0, "Name:");
         var passwordInput = addField(1, "Password:", true);
         var password2Input = addField(2, "Confirm:", true);
-        var okButton = addOkCancelButtons(3);
+        var okButton = addOkCancelButtons(3, 100);
 
         okButton.setOnAction(event -> {
             var name = nameInput.getText();
