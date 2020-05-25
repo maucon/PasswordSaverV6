@@ -38,7 +38,7 @@ public class CreateEntryDialog extends Dialog {
             }
         });
         loginField = addField(1, "Login:");
-        passwordField = addField(2, "Password:", true);
+        passwordField = addField(2, "Password:");
         var generatePassword = new Button();
         var plusImg = new ImageView(new Image("img/Generate Password small.png"));
         plusImg.setFitWidth(20 * owner.getHScale());
