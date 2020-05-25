@@ -4,8 +4,12 @@ import de.tandem.psv6.App;
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.gui.Card;
+import de.tandem.psv6.security.PasswordGenerator;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
@@ -35,6 +39,14 @@ public class CreateEntryDialog extends Dialog {
         });
         loginField = addField(1, "Login:");
         passwordField = addField(2, "Password:", true);
+        var generatePassword = new Button();
+        var plusImg = new ImageView(new Image("img/Generate Password small.png"));
+        plusImg.setFitWidth(20 * owner.getHScale());
+        plusImg.setFitHeight(20 * owner.getVScale());
+        generatePassword.setGraphic(plusImg);
+        grid.add(generatePassword, 3, 2);
+        generatePassword.onActionProperty().set(e -> passwordField.setText(PasswordGenerator.create(1, true, true, true)));
+
         descriptionField = addField(3, "Description:");
         var okbutton = addOkCancelButtons(4);
         okbutton.onActionProperty().set(event -> {
