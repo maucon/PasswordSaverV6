@@ -20,16 +20,19 @@ public class Card {
         var pane = new BorderPane();
         pane.setPadding(new Insets(10 * app.getHScale()));
 
-        var remove = new Button("-");
-        remove.onActionProperty().set(e -> {
-            new RemoveConfirmDialog(app, entry);
-        });
-        pane.setTop(remove);
-        BorderPane.setAlignment(remove, Pos.TOP_RIGHT);
+        var generatePassword = new Button();
+        var plusImg = new ImageView(new Image("img/minus sign.png"));
+        generatePassword.setId("transparent");
+        plusImg.setFitWidth(20 * app.getHScale());
+        plusImg.setFitHeight(20 * app.getVScale());
+        generatePassword.setGraphic(plusImg);
+        generatePassword.onActionProperty().set(e -> new RemoveConfirmDialog(app, entry));
+        pane.setTop(generatePassword);
+        BorderPane.setAlignment(generatePassword, Pos.TOP_RIGHT);
 
         var name = new Label(entry.getName());
         pane.setCenter(name);
-        BorderPane.setMargin(name, new Insets(0, 0, 20, 0));
+        BorderPane.setMargin(name, new Insets(0, 0, 30, 0));
         pane.setId("Card");
         pane.setStyle(app.getStyle());
         pane.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
