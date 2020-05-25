@@ -50,7 +50,7 @@ public class EntryDialog extends Dialog {
         okButton.setText("Save");
         okButton.onActionProperty().set(e -> {
             if (!Entry.isAllowedString(nameField.getText()) || !Entry.isAllowedString(passwordField.getText()) || !Entry.isAllowedString(descriptionField.getText())) {
-                new ErrorDialog(owner, stage, "Fields contain illegal character.");
+                new ErrorDialog(owner, stage, "Fields contains illegal character.");
                 return;
             }
             entry.setLogin(nameField.getText());
