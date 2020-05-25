@@ -13,12 +13,38 @@ public class MenuBar {
 
     public MenuBar(App app) {
         this.app = app;
-        Menu lenMenu = new Menu("Password-length");
-        //lenMenu.getItems().addAll()
+
+        var lenMenu = new Menu("Password-length");
+        int[] lenValues = {6, 8, 12, 16, 24, 32, 64, 96, 128};
+        var toggleGroup = new ToggleGroup();
+        for (int i : lenValues) {
+            var item = new RadioMenuItem(i + "");
+            item.setToggleGroup(toggleGroup);
+            item.setOnAction(event -> {
+                Settings.passwordLength = Integer.parseInt(item.getText());
+                Database.getInstance().saveUserSettings();
+            });
+            if (item.getText().equals(Settings.passwordLength + "")) item.setSelected(true);
+            lenMenu.getItems().add(item);
+        }
 
         Menu pwMenu = new Menu("Password-Generator");
-        pwMenu.getItems().addAll(new CheckMenuItem("Uppercase Letter"), new CheckMenuItem("Numbers"), new CheckMenuItem("Symbols"));
-
+        pwMenu.getItems().addAll(lenMenu, new CheckMenuItem("Uppercase Letter"), new CheckMenuItem("Numbers"), new CheckMenuItem("Symbols"));
+        pwMenu.getItems().get(1).setOnAction(event -> {
+            Settings.useUppercaseLetters = !Settings.useUppercaseLetters;
+            Database.getInstance().saveUserSettings();
+        });
+        ((CheckMenuItem) pwMenu.getItems().get(1)).setSelected(Settings.useUppercaseLetters);
+        pwMenu.getItems().get(2).setOnAction(event -> {
+            Settings.useNumbers = !Settings.useNumbers;
+            Database.getInstance().saveUserSettings();
+        });
+        ((CheckMenuItem) pwMenu.getItems().get(2)).setSelected(Settings.useNumbers);
+        pwMenu.getItems().get(3).setOnAction(event -> {
+            Settings.useSymbols = !Settings.useSymbols;
+            Database.getInstance().saveUserSettings();
+        });
+        ((CheckMenuItem) pwMenu.getItems().get(3)).setSelected(Settings.useSymbols);
 
         Menu[] menus = new Menu[]{new Menu("_File"), new Menu("_Options")};
         items = new MenuItem[menus.length][];
