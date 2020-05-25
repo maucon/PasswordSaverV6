@@ -34,7 +34,7 @@ public class LogIn extends AbstractWindow implements GUIOwner {
         stage = new Stage();
         stage.setTitle("Login");
         final var width = 400;
-        final var height = 300;
+        final var height = 250;
         stage.setWidth(width);
         stage.setHeight(height);
         stage.initStyle(StageStyle.UTILITY);
