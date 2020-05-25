@@ -78,7 +78,7 @@ public class EntryDialog extends Dialog {
         closeEventHandler = windowEvent -> {
             if (!nameField.getText().equals(entry.getLogin()) || !passwordField.getText().equals(entry.getPassword()) || !descriptionField.getText().equals(entry.getDescription())) {
                 windowEvent.consume();
-                new SaveConfirmDialog(owner, stage, entry, nameField.getText(), passwordField.getText(), descriptionField.getText());
+                new DiscardConfirmDialog(owner, stage);
             }
         };
     }

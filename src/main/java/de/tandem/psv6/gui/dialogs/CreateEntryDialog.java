@@ -55,6 +55,10 @@ public class CreateEntryDialog extends Dialog {
                 new ErrorDialog(owner, stage, "Not all required fields are filled in.");
                 return;
             }
+            if (!Entry.isAllowedString(nameField.getText()) || !Entry.isAllowedString(loginField.getText()) || !Entry.isAllowedString(passwordField.getText()) || !Entry.isAllowedString(descriptionField.getText())) {
+                new ErrorDialog(owner, stage, "Fields contain illegal character.");
+                return;
+            }
             var entry = new Entry(nameField.getText(), loginField.getText(), passwordField.getText(), descriptionField.getText(), null);
             ((App) owner).addNode(Card.createCard(((App) owner), Database.getInstance().addEntry(entry)));
             stage.close();

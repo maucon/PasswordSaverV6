@@ -6,13 +6,11 @@ import java.security.SecureRandom;
 
 public class PasswordGenerator {
 
-    // BANNED CHARS: °´§²³€µäÄüÜöÖ (and space)
-    // ALLOWED SYMBOLS: ^!"$%&/()=?`+*#'-_.:,;<>|~\@[]{}
     private static final char[] LOWERCASE_LETTERS = "abcdefghijklmnopqrstuvwxyz".toCharArray();
     private static final char[] UPPERCASE_LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
     private static final char[] NUMBERS = "1234567890".toCharArray();
     private static final char[] SYMBOLS = "^!\"$%&/()=?`+*#'-_.:,;<>|~\\@[]{}".toCharArray();
-    
+
     public static String create() {
         int array_length = LOWERCASE_LETTERS.length;
         if (Settings.useUppercaseLetters) array_length += UPPERCASE_LETTERS.length;
