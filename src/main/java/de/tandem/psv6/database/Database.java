@@ -42,9 +42,11 @@ public class Database {
         return instance = new Database(username);
     }
 
-    public static void removeInstance() {
-        instance = null;
-    }
+// --Commented out by Inspection START (25.05.2020 16:48):
+//    public static void removeInstance() {
+//        instance = null;
+//    }
+// --Commented out by Inspection STOP (25.05.2020 16:48)
 
     // ------------------------- STATIC -------------------------
     public static void setupUser(User user) {

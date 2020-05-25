@@ -69,11 +69,6 @@ public class App extends Application implements GUIOwner {
         new LogIn(this);
     }
 
-    @Override
-    public void stop() throws Exception {
-        super.stop();
-    }
-
     public void updateStyle() {
         style = Settings.darkMode ? "dark-styles.css" : "light-styles.css";
         root.getStylesheets().clear();

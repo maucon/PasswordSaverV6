@@ -5,7 +5,6 @@ import de.tandem.psv6.database.Database;
 import de.tandem.psv6.gui.dialogs.ErrorDialog;
 import de.tandem.psv6.gui.dialogs.RegisterDialog;
 import de.tandem.psv6.security.Security;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -94,11 +93,8 @@ public class LogIn extends AbstractWindow implements GUIOwner {
             }
         });
         registerButton.setOnAction(event -> new RegisterDialog(this, nameInput));
-        passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.ENTER) loginButton.fire();
-            }
+        passwordInput.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) loginButton.fire();
         });
     }
 

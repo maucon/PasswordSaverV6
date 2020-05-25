@@ -19,11 +19,11 @@ public class Entry implements Serializable {
     private String description;
     private transient String fileName;
 
-    public static boolean isAllowedString(String string) {
+    public static boolean isNotAllowedString(String string) {
         for (char c : string.toCharArray())
             if (!ALLOWED_CHARS.contains(c + ""))
-                return false;
-        return true;
+                return true;
+        return false;
     }
 
 }
