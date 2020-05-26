@@ -10,6 +10,7 @@ build:
   verbosity: minimal
 
 build_script:
+  - echo java home is $JAVA_HOME
   - gradlew.bat release --info --no-daemon -PbintrayUserName -PbintrayApiKey
 
 cache:
