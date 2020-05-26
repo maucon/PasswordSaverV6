@@ -70,10 +70,3 @@ jar {
     }
 }
 
-task release(type: Copy) {
-    dependsOn jpackage
-
-    from 'src/main/resources/img/PasswordSaverV6.ico'
-    into 'build/jpackage/PasswordSaverV6'
-}
-
