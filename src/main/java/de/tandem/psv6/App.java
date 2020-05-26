@@ -15,8 +15,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 import lombok.Getter;
 
-import java.io.File;
-
 @Getter
 public class App extends Application implements GUIOwner {
 
@@ -32,7 +30,6 @@ public class App extends Application implements GUIOwner {
 
     @Override
     public void start(Stage primaryStage) {
-        System.out.println(new File("a").getAbsolutePath());
         style = "dark-styles.css";
         stage = primaryStage;
         stage.setTitle("Password Saver");
@@ -41,7 +38,6 @@ public class App extends Application implements GUIOwner {
 
         root = new BorderPane();
         root.getStylesheets().add(style);
-        System.out.println(root.getStylesheets().get(0));
 
         flowPane = new FlowPane();
         flowPane.setId("gridPane");
@@ -71,8 +67,6 @@ public class App extends Application implements GUIOwner {
 
         stage.setScene(scene);
         new LogIn(this);
-        System.out.println(getClass().getResource(style));
-        System.out.println(getClass().getResource("/img/generate-password-small-dark.png"));
     }
 
     public void updateStyle() {
