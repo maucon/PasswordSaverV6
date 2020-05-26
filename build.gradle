@@ -5,11 +5,11 @@ plugins {
     id 'org.beryx.jlink' version '2.19.0'
 }
 
-//mainClassName = 'PasswordSaver/de.tandem.psv6.App'
-mainClassName = 'de.tandem.psv6.App'
 group 'de.tandem'
 version '6.0.0'
 sourceCompatibility = 14
+mainClassName = 'de.tandem.psv6.App'
+//mainClassName = 'PasswordSaver/de.tandem.psv6.App'
 
 sourceSets {
     main {
@@ -18,6 +18,7 @@ sourceSets {
         }
         resources {
             srcDirs = ['src/main/resources']
+            exclude 'database/dummy.file'
         }
     }
 }
@@ -53,10 +54,9 @@ javafx {
 
 jlink {
     launcher {
-        name = 'password_saver_V6'
+        name = 'PasswordSaver-6.0.0'
     }
 }
-
 
 jar {
     manifest {
@@ -66,17 +66,10 @@ jar {
     }
 }
 
-task fatJar(type: Jar) {
+task release(type: Copy) {
+    dependsOn jpackage
+    mkdir "$buildDir/jpackage/PasswordSaver-6.0.0/database"
 
-    from sourceSets.main.output
-
-    dependsOn configurations.runtimeClasspath
-    from {
-        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
-    }
-    manifest {
-        attributes('Implementation-Title': 'PasswordSaver',
-                'Implementation-Version': '6.0.0',
-                'Main-Class': 'de.tandem.psv6.App')
-    }
+    from file("$buildDir/resources/database")
+    into file("$buildDir/jpackage/PasswordSaver-6.0.0/database")
 }
