@@ -33,7 +33,7 @@ public class App extends Application implements GUIOwner {
     public void start(Stage primaryStage) {
         style = "dark-styles.css";
         stage = primaryStage;
-        stage.setTitle("Password Saver");
+        stage.setTitle("PasswordSaverV6");
         stage.setWidth(1280);
         stage.setHeight(720);
 
