@@ -1,5 +1,5 @@
 ; Variables:
-#define MyAppName "Password Saver"
+#define MyAppName "PasswordSaverV6"
 #define MyAppVersion "6.0.1"
 #define MyAppPublisher "Tandem"
 #define MyAppURL "https://github.com/maucon/PasswordSaverV6"   
@@ -47,7 +47,7 @@ Name: "german"; MessagesFile: "compiler:Languages\German.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked   
 
 [Files]
-Source: "build\jpackage\PasswordSaver-6.0.0\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "build\jpackage\PasswordSaverV6\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 
 ; Creates Shortcuts
 ; Parameters, HotKeys, WorkingDirectories etc can be specified, see https://jrsoftware.org/ishelp/index.php?topic=iconssection

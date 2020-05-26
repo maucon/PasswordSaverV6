@@ -67,7 +67,7 @@ public class App extends Application implements GUIOwner {
         hScale.bind(scene.widthProperty().divide(720));
 
         stage.setScene(scene);
-        stage.getIcons().add(new Image("img/PasswordSaverV6.png"));
+        stage.getIcons().add(new Image(getClass().getResource("/img/PasswordSaverV6.png").toExternalForm()));
         new LogIn(this);
     }
 
