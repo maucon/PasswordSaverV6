@@ -8,6 +8,7 @@ import de.tandem.psv6.exceptions.NotLoggedInException;
 import de.tandem.psv6.exceptions.UserAlreadyExistsException;
 import de.tandem.psv6.security.Security;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class Database {
 
-    private static final String DATABASE_PATH = "database/";
+    private static final String DATABASE_PATH = FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "/PasswordSaverV6/database/";
     private static final String PASSWORD_FILE_NAME = "user.key";
     private static final String ENTRY_FOLDER_NAME = "entries/";
     private static final String ENTRY_FILE_EXTENSION = ".entry";

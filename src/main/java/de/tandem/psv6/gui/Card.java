@@ -10,7 +10,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +22,7 @@ public class Card {
         pane.setPadding(new Insets(10 * app.getHScale()));
 
         var generatePassword = new Button();
-        var plusImg = new ImageView(new Image("img/minus sign.png"));
+        var plusImg = new ImageView(app.getClass().getResource("/img/minus-sign.png").toExternalForm());
         generatePassword.setId("transparent");
         plusImg.setFitWidth(20 * app.getHScale());
         plusImg.setFitHeight(20 * app.getVScale());
@@ -38,7 +37,7 @@ public class Card {
         pane.setId("Card");
         pane.setStyle(app.getStyle());
         pane.addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            if (e.getButton() == MouseButton.PRIMARY) new EntryDialog(app, entry);
+            if (e.getButton() == MouseButton.PRIMARY) new EntryDialog(app, app, entry);
             if (e.getButton() == MouseButton.SECONDARY) new RemoveConfirmDialog(app, entry);
         });
 
@@ -48,7 +47,7 @@ public class Card {
     }
 
     public static BorderPane addEntryCard(App app) {
-        var img = new ImageView(new Image("img/plus sign " + (Settings.darkMode ? "dark" : "light") + ".png"));
+        var img = new ImageView(app.getClass().getResource("/img/plus-sign-" + (Settings.darkMode ? "dark" : "light") + ".png").toExternalForm());
         img.setFitWidth(70 * app.getHScale());
         img.setFitHeight(70 * app.getVScale());
         var pane = new BorderPane();
