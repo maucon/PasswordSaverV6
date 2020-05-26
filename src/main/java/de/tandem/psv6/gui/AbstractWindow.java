@@ -1,5 +1,6 @@
 package de.tandem.psv6.gui;
 
+import de.tandem.psv6.App;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,6 +15,7 @@ public abstract class AbstractWindow {
     protected GridPane grid;
     protected Stage stage;
     protected GUIOwner owner;
+    protected App app;
 
     protected TextInputControl addField(int gridIndex, String labelText) {
         return addField(gridIndex, labelText, false);
