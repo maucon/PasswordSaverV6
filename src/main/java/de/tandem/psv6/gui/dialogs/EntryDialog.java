@@ -1,12 +1,12 @@
 package de.tandem.psv6.gui.dialogs;
 
+import de.tandem.psv6.App;
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Entry;
 import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -18,8 +18,8 @@ public class EntryDialog extends Dialog {
     private TextInputControl passwordField;
     private TextInputControl descriptionField;
 
-    public EntryDialog(GUIOwner owner, Entry entry) {
-        super(owner, entry.getName(), 500, 270);
+    public EntryDialog(App app, GUIOwner owner, Entry entry) {
+        super(app, owner, entry.getName(), 500, 270);
         this.entry = entry;
         nameField.setText(entry.getLogin());
         passwordField.setText(entry.getPassword());
@@ -77,7 +77,7 @@ public class EntryDialog extends Dialog {
     }
 
     private void createCopyButton(Button button) {
-        var pepe = new ImageView(new Image("img/copy-solid " + (Settings.darkMode ? "dark" : "light") + ".png"));
+        var pepe = new ImageView(app.getClass().getResource("/img/copy-solid-" + (Settings.darkMode ? "dark" : "light") + ".png").toExternalForm());
         pepe.setFitWidth(20 * owner.getHScale());
         pepe.setFitHeight(20 * owner.getVScale());
         button.setGraphic(pepe);

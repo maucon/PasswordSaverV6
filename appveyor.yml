@@ -1,0 +1,44 @@
+﻿environment:
+  my_version_number: 6.0.1          # ALSO CHANGE IN BUILD.GRADLE & INNO
+  application_name: PasswordSaver   # ALSO CHANGE IN BUILD.GRADLE & INNO
+
+version: $(my_version_number).{build}
+
+skip_tags: true
+
+configuration: Release
+
+cache:
+  - C:\Users\appveyor\.gradle
+
+build:
+  verbosity: minimal
+
+build_script:
+  - del gradlew.bat
+  - ren gradlew-appveyor.bat gradlew.bat
+  - gradlew.bat jpackage --info --no-daemon -PbintrayUserName -PbintrayApiKey
+
+for:
+  - branches:
+      only:
+        - master
+
+    after_build:
+      - ps: '& "C:\Program Files (x86)\Inno Setup 6\iscc.exe" /qp "Inno Config.iss"'
+
+    artifacts:
+      - path: /Installer/PasswordSaverV6.exe
+        name: WinInstaller
+
+    deploy:
+      - provider: GitHub
+        release: $(my_version_number)
+        auth_token: # encrypted token:
+          secure: HESVuhwKdUbPpbBsQrWslB7GYNy5r03/MN/enpu7UWbY886bOE+EpbEFwAVMrtLO
+        artifact: WinInstaller
+        draft: false
+        prerelease: false
+        force_update: false
+        on:
+          branch: master
