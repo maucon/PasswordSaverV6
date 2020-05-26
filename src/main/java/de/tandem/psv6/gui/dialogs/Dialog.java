@@ -1,5 +1,6 @@
 package de.tandem.psv6.gui.dialogs;
 
+import de.tandem.psv6.App;
 import de.tandem.psv6.gui.AbstractWindow;
 import de.tandem.psv6.gui.GUIOwner;
 import javafx.event.EventHandler;
@@ -16,12 +17,21 @@ public abstract class Dialog extends AbstractWindow {
 
     protected EventHandler<WindowEvent> closeEventHandler;
 
+    public Dialog(App app, GUIOwner owner, String title, double width, double height) {
+        this(app, owner, owner.getStage(), title, width, height);
+    }
+
     public Dialog(GUIOwner owner, String title, double width, double height) {
-        this(owner, owner.getStage(), title, width, height);
+        this(null, owner, owner.getStage(), title, width, height);
     }
 
     public Dialog(GUIOwner owner, Stage ownerStage, String title, double width, double height) {
+        this(null, owner, ownerStage, title, width, height);
+    }
+
+    public Dialog(App app, GUIOwner owner, Stage ownerStage, String title, double width, double height) {
         this.owner = owner;
+        this.app = app;
 
         grid = new GridPane();
         grid.setId("gridPane");

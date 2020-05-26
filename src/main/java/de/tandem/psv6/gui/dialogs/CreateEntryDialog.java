@@ -9,7 +9,6 @@ import de.tandem.psv6.security.PasswordGenerator;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextInputControl;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -24,7 +23,7 @@ public class CreateEntryDialog extends Dialog {
     private TextInputControl descriptionField;
 
     public CreateEntryDialog(App app) {
-        super(app, "Create new", 450, 320);
+        super(app, app, "Create new", 450, 320);
     }
 
     @Override
@@ -41,10 +40,11 @@ public class CreateEntryDialog extends Dialog {
         loginField = addField(1, "Login:");
         passwordField = addField(2, "Password:");
         var generatePassword = new Button();
-        var plusImg = new ImageView(new Image("img/Generate Password small " + (Settings.darkMode ? "dark" : "light") + ".png"));
-        plusImg.setFitWidth(20 * owner.getHScale());
-        plusImg.setFitHeight(20 * owner.getVScale());
-        generatePassword.setGraphic(plusImg);
+        System.out.println(app);
+        var generateImg = new ImageView(app.getClass().getResource("/img/generate-password-small-" + (Settings.darkMode ? "dark" : "light") + ".png").toExternalForm());
+        generateImg.setFitWidth(20 * owner.getHScale());
+        generateImg.setFitHeight(20 * owner.getVScale());
+        generatePassword.setGraphic(generateImg);
         grid.add(generatePassword, 3, 2);
         generatePassword.onActionProperty().set(e -> passwordField.setText(PasswordGenerator.create()));
 
