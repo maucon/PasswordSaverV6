@@ -53,8 +53,12 @@ javafx {
 }
 
 jlink {
+    addOptions('--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages')
     launcher {
         name = 'PasswordSaverV6'
+    }
+    jpackage {
+        imageOptions += ['--icon', 'src/main/resources/img/PasswordSaverV6.ico']
     }
 }
 
@@ -65,6 +69,7 @@ jar {
                 'Main-Class': 'de.tandem.psv6.App')
     }
 }
+
 task release(type: Copy) {
     dependsOn jpackage
 

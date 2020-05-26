@@ -4,7 +4,7 @@
 #define MyAppPublisher "Tandem"
 #define MyAppURL "https://github.com/maucon/PasswordSaverV6"   
 #define MyAppExeName "PasswordSaverV6.exe"
-;#define MyAppIconName "MyAppName.ico"
+#define MyAppIconName "PasswordSaverV6.ico"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -61,6 +61,6 @@ Name: "{app}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Flags: createonly
 ; use Flag "shellexec" when file is not directly runnable (for example .txt or a folder)
 [Run] 
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent    
-   
+
 [UninstallDelete]
 Type: filesandordirs; Name: "{userdocs}\PasswordSaverV6\database"
