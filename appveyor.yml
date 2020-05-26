@@ -6,6 +6,8 @@ version: $(my_version_number).{build}
 
 skip_tags: true
 
+configuration: Release
+
 build:
   verbosity: minimal
 
@@ -26,7 +28,7 @@ for:
       - ps: '& "C:\Program Files (x86)\Inno Setup 6\iscc.exe" /qp "Inno Config.iss"'
 
     artifacts:
-      - path: /Installer/$(application_name)-$(my_version_number).exe
+      - path: /Installer/Password Saver.exe
         name: WinInstaller
 
     deploy:
