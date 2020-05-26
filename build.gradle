@@ -17,6 +17,7 @@ sourceSets {
         }
         resources {
             srcDirs = ['src/main/resources']
+            exclude 'src/main/resources/img/generate-password.png'
         }
     }
 }
