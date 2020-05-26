@@ -28,7 +28,7 @@ for:
       - ps: '& "C:\Program Files (x86)\Inno Setup 6\iscc.exe" /qp "Inno Config.iss"'
 
     artifacts:
-      - path: /Installer/Password Saver.exe
+      - path: /Installer/PasswordSaverV6.exe
         name: WinInstaller
 
     deploy:
@@ -37,7 +37,7 @@ for:
         auth_token: # encrypted token:
           secure: HESVuhwKdUbPpbBsQrWslB7GYNy5r03/MN/enpu7UWbY886bOE+EpbEFwAVMrtLO
         artifact: WinInstaller
-        draft: true
+        draft: false
         prerelease: false
         force_update: false
         on:
