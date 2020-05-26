@@ -1,9 +1,9 @@
 ; Variables:
 #define MyAppName "Password Saver"
-#define MyAppVersion "6.0.0"
+#define MyAppVersion "6.0.1"
 #define MyAppPublisher "Tandem"
 #define MyAppURL "https://github.com/maucon/PasswordSaverV6"   
-#define MyAppExeName "PasswordSaver-6.0.0.exe"
+#define MyAppExeName "PasswordSaverV6.exe"
 ;#define MyAppIconName "MyAppName.ico"
 
 [Setup]
@@ -36,10 +36,12 @@ CloseApplications=yes
 ; Filters which Files are checked by "CloseApplications"  (default: *.exe,*.dll,*.chm)
 CloseApplicationsFilter=*.*
 
+[Dirs]
+Name: "{userdocs}\PasswordSaverV6\database"
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "german"; MessagesFile: "compiler:Languages\German.isl"
-
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked   
@@ -58,4 +60,7 @@ Name: "{app}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Flags: createonly
 ; Specifies Programs that are run after installation but before the final page of the Setup  
 ; use Flag "shellexec" when file is not directly runnable (for example .txt or a folder)
 [Run] 
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent    
+   
+[UninstallDelete]
+Type: filesandordirs; Name: "{userdocs}\PasswordSaverV6\database"
