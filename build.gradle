@@ -18,7 +18,6 @@ sourceSets {
         }
         resources {
             srcDirs = ['src/main/resources']
-            exclude 'database/dummy.file'
         }
     }
 }
@@ -67,9 +66,5 @@ jar {
 }
 
 task release(type: Copy) {
-    dependsOn jpackage
-    mkdir "$buildDir/jpackage/PasswordSaver-6.0.0/database"
-
-    from file("$buildDir/resources/database")
-    into file("$buildDir/jpackage/PasswordSaver-6.0.0/database")
+    dependsOn jpackage.doFirst { mkdir "$buildDir/jpackage/PasswordSaver-6.0.0/database" }
 }
