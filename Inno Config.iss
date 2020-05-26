@@ -22,7 +22,7 @@ Compression=lzma2
 SolidCompression=yes   
 WizardStyle=modern
 ; Filename of the Setup exe
-OutputBaseFilename={#MyAppName}
+OutputBaseFilename=PasswordSaverV6
 ; Changes the Folder where the Setup exe is created
 OutputDir=Installer
 ; will use x64 folder on 64bit PC
