@@ -6,10 +6,9 @@ plugins {
 }
 
 group 'de.tandem'
-version '6.0.0'
+version '6.0.1'
 sourceCompatibility = 14
 mainClassName = 'de.tandem.psv6.App'
-//mainClassName = 'PasswordSaver/de.tandem.psv6.App'
 
 sourceSets {
     main {
@@ -53,18 +52,14 @@ javafx {
 
 jlink {
     launcher {
-        name = 'PasswordSaver-6.0.0'
+        name = 'PasswordSaverV6'
     }
 }
 
 jar {
     manifest {
         attributes('Implementation-Title': 'PasswordSaver',
-                'Implementation-Version': '6.0.0',
+                'Implementation-Version': '6.0.1',
                 'Main-Class': 'de.tandem.psv6.App')
     }
-}
-
-task release(type: Copy) {
-    dependsOn jpackage.doFirst { mkdir "$buildDir/jpackage/PasswordSaver-6.0.0/database" }
 }

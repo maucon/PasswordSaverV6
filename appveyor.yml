@@ -1,5 +1,5 @@
 ﻿environment:
-  my_version_number: 6.0.0          # ALSO CHANGE IN BUILD.GRADLE & INNO
+  my_version_number: 6.0.1          # ALSO CHANGE IN BUILD.GRADLE & INNO
   application_name: PasswordSaver   # ALSO CHANGE IN BUILD.GRADLE & INNO
 
 version: $(my_version_number).{build}
@@ -17,7 +17,7 @@ build:
 build_script:
   - del gradlew.bat
   - ren gradlew-appveyor.bat gradlew.bat
-  - gradlew.bat release --info --no-daemon -PbintrayUserName -PbintrayApiKey
+  - gradlew.bat jpackage --info --no-daemon -PbintrayUserName -PbintrayApiKey
 
 for:
   - branches:
