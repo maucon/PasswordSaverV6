@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'de.tandem'
-version '6.0.1'
+version '6.0.2'
 sourceCompatibility = 14
 mainClassName = 'de.tandem.psv6.App'
 
@@ -18,6 +18,7 @@ sourceSets {
         resources {
             srcDirs = ['src/main/resources']
             exclude 'src/main/resources/img/generate-password.png'
+            exclude 'src/main/resources/img/PasswordSaverV6.ico'
         }
     }
 }
@@ -60,7 +61,14 @@ jlink {
 jar {
     manifest {
         attributes('Implementation-Title': 'PasswordSaverV6',
-                'Implementation-Version': '6.0.1',
+                'Implementation-Version': '6.0.2',
                 'Main-Class': 'de.tandem.psv6.App')
     }
 }
+task release(type: Copy) {
+    dependsOn jpackage
+
+    from 'src/main/resources/img/PasswordSaverV6.ico'
+    into 'build/jpackage/PasswordSaverV6'
+}
+
