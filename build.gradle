@@ -58,7 +58,7 @@ jlink {
 
 jar {
     manifest {
-        attributes('Implementation-Title': 'PasswordSaver',
+        attributes('Implementation-Title': 'PasswordSaverV6',
                 'Implementation-Version': '6.0.1',
                 'Main-Class': 'de.tandem.psv6.App')
     }
