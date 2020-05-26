@@ -4,7 +4,7 @@
 #define MyAppPublisher "Tandem"
 #define MyAppURL "https://github.com/maucon/PasswordSaverV6"   
 #define MyAppExeName "PasswordSaverV6.exe"
-#define MyAppIconName "PasswordSaverV6.ico"
+#define MyAppIconName "src/main/resources/img/PasswordSaverV6.ico"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -35,6 +35,9 @@ ShowLanguageDialog=auto
 CloseApplications=yes
 ; Filters which Files are checked by "CloseApplications"  (default: *.exe,*.dll,*.chm)
 CloseApplicationsFilter=*.*
+; specify Icon for Setup
+SetupIconFile={#MyAppIconName}
+
 
 [Dirs]
 Name: "{userdocs}\PasswordSaverV6\database"
