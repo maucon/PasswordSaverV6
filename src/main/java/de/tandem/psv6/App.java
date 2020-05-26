@@ -10,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
@@ -66,6 +67,7 @@ public class App extends Application implements GUIOwner {
         hScale.bind(scene.widthProperty().divide(720));
 
         stage.setScene(scene);
+        stage.getIcons().add(new Image("img/PasswordSaverV6.png"));
         new LogIn(this);
     }
 
