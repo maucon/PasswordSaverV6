@@ -20,12 +20,12 @@ import java.util.stream.Collectors;
 
 public class Database {
 
+    public static final String ENTRY_FILE_EXTENSION = ".entry";
+    public static final String ENTRY_FILE_NAME_FORMAT = "yyyyMMddHHmmssSSS";
     private static final String DATABASE_PATH = FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "/PasswordSaverV6/database/";
     private static final String PASSWORD_FILE_NAME = "user.key";
     private static final String ENTRY_FOLDER_NAME = "entries/";
-    private static final String ENTRY_FILE_EXTENSION = ".entry";
     private static final String CONFIG_FILE_NAME = "config.cfg";
-
     private static Database instance;
     private final String userPath;
 
@@ -101,7 +101,7 @@ public class Database {
     }
 
     public Entry addEntry(Entry entry) {
-        var filename = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date()) + ENTRY_FILE_EXTENSION;
+        var filename = new SimpleDateFormat(ENTRY_FILE_NAME_FORMAT).format(new Date()) + ENTRY_FILE_EXTENSION;
         try (var out = new ObjectOutputStream(Security.encryptStream(new FileOutputStream(
                 userPath + ENTRY_FOLDER_NAME + filename), Security.accessGuardedKey(Security.guardedString)))) {
             entry.setFileName(filename);
