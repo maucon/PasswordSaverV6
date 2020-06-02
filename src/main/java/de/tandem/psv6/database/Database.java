@@ -20,12 +20,13 @@ import java.util.stream.Collectors;
 
 public class Database {
 
-    public static final String ENTRY_FILE_EXTENSION = ".entry";
-    public static final String ENTRY_FILE_NAME_FORMAT = "yyyyMMddHHmmssSSS";
     private static final String DATABASE_PATH = FileSystemView.getFileSystemView().getDefaultDirectory().toString() + "/PasswordSaverV6/database/";
     private static final String PASSWORD_FILE_NAME = "user.key";
     private static final String ENTRY_FOLDER_NAME = "entries/";
     private static final String CONFIG_FILE_NAME = "config.cfg";
+    private static final String ENTRY_FILE_EXTENSION = ".entry";
+    private static final String ENTRY_FILE_NAME_FORMAT = "yyyyMMddHHmmssSSS";
+
     private static Database instance;
     private final String userPath;
 
