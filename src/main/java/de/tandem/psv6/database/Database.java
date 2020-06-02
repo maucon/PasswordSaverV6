@@ -10,12 +10,12 @@ import de.tandem.psv6.security.Security;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Database {
@@ -122,6 +122,18 @@ public class Database {
         addEntry(entry);
         removeEntry(entry);
     }
+
+    public void deleteUser() {
+        try {
+            Files.walk(Paths.get(userPath))
+                    .map(Path::toFile)
+                    .sorted((o1, o2) -> -o1.compareTo(o2))
+                    .forEach(File::delete);
+        } catch (IOException ignored) {
+            throw new FileModificationException("Couldn't delete user");
+        }
+    }
+
 
     // ------------------------- SETTINGS -------------------------
     public void loadUserSettings() {
