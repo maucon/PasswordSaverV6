@@ -39,7 +39,6 @@ public class Converter {
                 successCounter++;
             } catch (IOException | GeneralSecurityException | NullPointerException ignored) {
                 failCounter++;
-                System.out.println(fileEntry.getName() + " is corrupted!");
             }
         }
 
