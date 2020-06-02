@@ -1,7 +1,7 @@
 package de.tandem.psv6.gui;
 
 import de.tandem.psv6.App;
-import de.tandem.psv6.converter.Converter;
+import de.tandem.psv6.database.Converter;
 import de.tandem.psv6.database.Database;
 import de.tandem.psv6.entity.Settings;
 import de.tandem.psv6.gui.dialogs.CreateEntryDialog;
@@ -50,7 +50,7 @@ public class MenuBar {
 
         Menu[] menus = new Menu[]{new Menu("_File"), new Menu("_Options")};
         items = new MenuItem[menus.length][];
-        items[0] = new MenuItem[]{new MenuItem("_New"), new MenuItem("_Convert"), new MenuItem("Exit")};
+        items[0] = new MenuItem[]{new MenuItem("_New"), new MenuItem("_Import"), new MenuItem("Exit")};
         items[1] = new MenuItem[]{new CheckMenuItem("_Dark Mode"), pwMenu};
         addListeners();
 

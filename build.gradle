@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'de.tandem'
-version '6.0.3'
+version '6.0.4'
 sourceCompatibility = 14
 mainClassName = 'de.tandem.psv6.App'
 
