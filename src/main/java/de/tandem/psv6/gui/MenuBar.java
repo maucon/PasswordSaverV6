@@ -67,7 +67,7 @@ public class MenuBar {
             new RestartDialog(app);
         });
         items[0][2].setOnAction(e -> app.getStage().close());
-        items[0][1].setOnAction(e -> Converter.convert());
+        items[0][1].setOnAction(e -> Converter.convert(app));
         items[0][0].setOnAction(e -> new CreateEntryDialog(app));
     }
 
