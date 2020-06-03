@@ -19,6 +19,7 @@ AppVerName={#MyAppName}
 DefaultDirName={autopf}\{#MyAppName}   
 DefaultGroupName={#MyAppName}
 SignTool=signtool
+SignedUninstaller=yes
 Compression=lzma2   
 SolidCompression=yes   
 WizardStyle=modern
