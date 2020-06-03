@@ -1,5 +1,5 @@
 ﻿environment:
-  my_version_number: 6.0.5          # ALSO CHANGE IN BUILD.GRADLE & INNO
+  my_version_number: 6.0.6          # ALSO CHANGE IN BUILD.GRADLE & INNO
   application_name: PasswordSaver   # ALSO CHANGE IN BUILD.GRADLE & INNO
 
 version: $(my_version_number).{build}
