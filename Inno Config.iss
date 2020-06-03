@@ -1,6 +1,6 @@
 ; Variables:
 #define MyAppName "PasswordSaverV6"
-#define MyAppVersion "6.0.4"
+#define MyAppVersion "6.0.5"
 #define MyAppPublisher "Tandem"
 #define MyAppURL "https://github.com/maucon/PasswordSaverV6"   
 #define MyAppExeName "PasswordSaverV6.exe"
@@ -17,7 +17,8 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL} 
 AppVerName={#MyAppName}
 DefaultDirName={autopf}\{#MyAppName}   
-DefaultGroupName={#MyAppName} 
+DefaultGroupName={#MyAppName}
+SignTool=signtool
 Compression=lzma2   
 SolidCompression=yes   
 WizardStyle=modern
