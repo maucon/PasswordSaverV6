@@ -134,7 +134,6 @@ public class Database {
         }
     }
 
-
     // ------------------------- SETTINGS -------------------------
     public void loadUserSettings() {
         try (var bufferedReader = new BufferedReader(new FileReader(userPath + CONFIG_FILE_NAME))) {

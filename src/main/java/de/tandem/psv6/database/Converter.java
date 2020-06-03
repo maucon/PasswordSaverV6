@@ -9,7 +9,6 @@ import javafx.stage.DirectoryChooser;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.util.Base64;
 import java.util.Objects;
 
 public class Converter {
@@ -20,7 +19,6 @@ public class Converter {
             try (var bufferedReader = new BufferedReader(new FileReader(fileEntry))) {
 
                 Entry entry = new Entry(fileEntry.getName().substring(0, fileEntry.getName().length() - 4), readLogin(bufferedReader.readLine()), readPassword(bufferedReader.readLine()), "", "");
-                Database.getInstance().addEntry(entry);
                 app.addNode(Card.createCard((app), Database.getInstance().addEntry(entry)));
 
             } catch (Exception ignored) {
@@ -42,7 +40,7 @@ public class Converter {
     }
 
     private static String decode(final String e) {
-        return new String(Base64.getDecoder().decode(e));
+        return new String(DatatypeConverter.parseBase64Binary(e));
     }
 
 }
