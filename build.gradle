@@ -6,7 +6,7 @@ plugins {
 }
 
 group 'de.tandem'
-version '6.0.4'
+version '6.0.5'
 sourceCompatibility = 14
 mainClassName = 'de.tandem.psv6.App'
 
@@ -65,7 +65,7 @@ jlink {
 jar {
     manifest {
         attributes('Implementation-Title': 'PasswordSaverV6',
-                'Implementation-Version': '6.0.2',
+                'Implementation-Version': '6.0.5',
                 'Main-Class': 'de.tandem.psv6.App')
     }
 }
