@@ -29,6 +29,7 @@ for:
         - master
 
     after_build:
+      - 'echo %tandem_cert_password%'
       - '"C:\Program Files (x86)\Inno Setup 6\iscc.exe" "/ssigntool=$qC:\Program Files (x86)\Windows Kits\10\bin\10.0.18362.0\x64\signtool.exe$q sign /f %APPVEYOR_BUILD_FOLDER%/tandem-developer-certificate.pfx /t http://timestamp.comodoca.com/authenticode /p %tandem_cert_password% /fd sha256 $f" /qp "Inno Config.iss"'
 
     artifacts:
