@@ -23,10 +23,8 @@ final public class DatatypeConverter {
         final byte[] out = new byte[buflen];
         int o = 0;
         final int len = text.length();
-        int i;
         final byte[] quadruplet = new byte[4];
-        int q = 0;
-        for (i = 0; i < len; i++) {
+        for (int i = 0, q = 0; i < len; i++) {
             char ch = text.charAt(i);
             byte v = decodeMap[ch];
             if (v != -1) quadruplet[q++] = v;
@@ -49,13 +47,12 @@ final public class DatatypeConverter {
         for (; j >= 0; j--) {
             byte code = decodeMap[text.charAt(j)];
             if (code == PADDING) continue;
-            if (code == -1) return text.length() / 4 * 3;
+            if (code == -1) return len / 4 * 3;
             break;
         }
-        j++;
-        int padSize = len - j;
-        if (padSize > 2) return text.length() / 4 * 3;
-        return text.length() / 4 * 3 - padSize;
+        int padSize = len - j + 1;
+        if (padSize > 2) return len / 4 * 3;
+        return len / 4 * 3 - padSize;
     }
 
 }
